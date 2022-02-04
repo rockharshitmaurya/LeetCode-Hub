@@ -15,28 +15,9 @@
  */
 class Solution {
     public TreeNode insertIntoBST(TreeNode root, int val) {
-        if(root==null) return new TreeNode(val);
-        TreeNode node=root,prev=root;
-        TreeNode get=new TreeNode(-1);
-        while(root!=null){
-            prev=root;
-            if(root.val>val){
-               get=root;
-                root=root.left;
-            }else{
-                root=root.right;
-            }
-        }
-        // System.out.println(get.val);
-         TreeNode add=new TreeNode(val);
-        if(get.val!=-1){
-       
-        add.left=get.left;
-        get.left=add;
-        }else{
-            prev.right=add;
-        }
-        
-        return node;
+        if(root == null) return new TreeNode(val);
+        if(root.val > val) root.left = insertIntoBST(root.left, val);
+        else root.right = insertIntoBST(root.right, val);
+        return root;
     }
 }
