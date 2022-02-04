@@ -26,23 +26,17 @@ class Solution {
                 if(prev.right==null){
                    prev.right=cur; 
                     cur=cur.left;
-                    // System.out.print("prev "+prev.val+" ");
                 }else{
                     prev.right=null;
-                    // System.out.print(cur.val+" ");
                     if(++count==k) return cur.val;
                     cur=cur.right;
                     
                 }
-                 
-                
             }else{
                 if(++count==k) return cur.val;
                 System.out.print(cur.val+" ");
-
                 cur=cur.right;
             }
-           
         }
         return 0;
     }
