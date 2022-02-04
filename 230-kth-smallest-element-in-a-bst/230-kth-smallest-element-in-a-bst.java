@@ -34,7 +34,6 @@ class Solution {
                 }
             }else{
                 if(++count==k) return cur.val;
-                System.out.print(cur.val+" ");
                 cur=cur.right;
             }
         }
