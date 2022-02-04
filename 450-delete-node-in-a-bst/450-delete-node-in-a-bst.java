@@ -36,37 +36,19 @@ class Solution {
         }
         return root;
     }
-    // void delete(TreeNode prev){
-    //     TreeNode new_node=prev.left.right;
-    //     if(new_node!=null){
-    //         while(new_node.left!=null){
-    //             new_node=new_node.left;
-    //         }
-    //         new_node.left=prev.left.left;
-    //         prev.left=prev.left.right;
-    //     }else{
-    //         prev.left=prev.left.left;
-    //     }
-    // }
-    TreeNode helper(TreeNode root){
+
+ TreeNode helper(TreeNode root){
         if(root.right==null){
             return root.left;
         }else if(root.left==null){
             return root.right;
         }else{
              TreeNode new_node=root.right;
-            if(new_node!=null){
                 while(new_node.left!=null){
                     new_node=new_node.left;
                 }
                 new_node.left=root.left;
-             // System.out.println("if");
-               return root.right;
-            }else{
-                System.out.println("else");
-                return new_node;
-            } 
+                   return root.right;
         }
-        
     }
 }
