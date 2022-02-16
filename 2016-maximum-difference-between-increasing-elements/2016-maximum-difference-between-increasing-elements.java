@@ -14,7 +14,7 @@ class Solution {
         for(int i=0; i<len; i++){
             max=Math.max(max,(nums[arr[i]]-nums[i]));
         }
-        System.out.println(Arrays.toString(arr));
+        // System.out.println(Arrays.toString(arr));
         return max==0?-1:max;
     }
 }
