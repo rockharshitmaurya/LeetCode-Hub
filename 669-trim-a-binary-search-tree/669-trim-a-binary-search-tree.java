@@ -16,21 +16,57 @@
 class Solution {
     public TreeNode trimBST(TreeNode root, int low, int high) {
         if(root==null) return root;
-        if(root.val<low) return trimBST(root.right,low,high);
-        if(root.val>high) return trimBST(root.left,low,high);
-        
-        root.left=trimBST(root.left,low,high);
-        root.right=trimBST(root.right,low,high);
+        Stack<TreeNode> st=new Stack<>();
+        st.push(root);
+        if(root.val<low || root.val>high){
+            root= helper(root,low,high);
+        }
+        while(!st.isEmpty()){
+            TreeNode node=st.pop();
+            if(node.left!=null){
+                if(node.left.val<low || node.left.val>high){
+                    node.left=helper(node.left,low,high);
+                }
+            }
+            // else{
+                if(node.left!=null) st.push(node.left);
+            // }
+            if(node.right!=null){
+                if(node.right.val<low || node.right.val>high){
+                node.right=helper(node.right,low,high);
+                }
+            }
+            // else{
+                if(node.right!=null) st.push(node.right);
+            // }
+            
+        }
         return root;
 
     }
-//     TreeNode helper(TreeNode root){
-//         if(root.left==null){
-//             return root.right;
-//         }else if(root.right==null){
-//             return root.left;
-//         }else{
-            
-//         }
-//     }
+    
+    TreeNode helper(TreeNode root,int low,int high){
+            while(root!=null){
+                if(root.val>high){
+                    root=root.left;
+                }else if(root.val<low){
+                    root=root.right;
+                }else{
+                    return root;
+                }
+                
+            } 
+        return root;
+        // if(root.val< low){
+          //     while(root!=null && root.val<low){
+          //         root=root.right;
+          //     }
+          //     return root;
+          // }else{
+          //   while(root!=null && root.val>high){
+          //         root=root.left;
+          //     }
+          //     return root;  
+          // } 
+    }
 }
