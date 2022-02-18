@@ -14,18 +14,18 @@
  * }
  */
 class FindElements {
-    HashMap<Integer,Integer> map=new HashMap<>();
+       Set<Integer> seen = new HashSet<>();
     
     public FindElements(TreeNode root) {
     helper(root,0);   
     }
     
     public boolean find(int target) {
-      return map.containsKey(target);
+      return seen.contains(target);
     }
     void helper(TreeNode root,int val){
        if(root==null) return;
-        map.put(val,1);
+        seen.add(val);
         helper(root.left,2*val+1);
         helper(root.right,2*val+2);
     }
