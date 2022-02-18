@@ -14,20 +14,25 @@
  * }
  */
 class FindElements {
-       Set<Integer> seen = new HashSet<>();
+       private BitSet sets = new BitSet();
     
-    public FindElements(TreeNode root) {
-    helper(root,0);   
+    public FindElements(TreeNode root) {     
+        init(root, 0);
+    }
+    
+    private void init(TreeNode node, int target) {
+      if (node != null)  {
+          
+          node.val = target;
+          sets.set(target);
+          init(node.left, 2*target +1);
+          init(node.right, 2*target +2);
+      }      
     }
     
     public boolean find(int target) {
-      return seen.contains(target);
-    }
-    void helper(TreeNode root,int val){
-       if(root==null) return;
-        seen.add(val);
-        helper(root.left,2*val+1);
-        helper(root.right,2*val+2);
+        
+        return sets.get(target);        
     }
 }
 
