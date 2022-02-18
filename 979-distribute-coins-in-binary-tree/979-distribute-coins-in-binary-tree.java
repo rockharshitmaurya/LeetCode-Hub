@@ -26,8 +26,6 @@ class Solution {
         if(root.left!=null){
             if(root.left.val<=0){
                 sum+=Math.abs(root.left.val-1);
-                 System.out.println("left : "+Math.abs(root.left.val-1));
-
                 root.val-=Math.abs(root.left.val-1);
             }
             else if(root.left.val>1){
@@ -40,7 +38,6 @@ class Solution {
         if(root.right!=null){
             if(root.right.val<=0){
                 sum+=Math.abs(root.right.val-1);
-                System.out.println("right : "+Math.abs(root.right.val-1)+" root.val : "+root.val);
                 root.val=root.val-Math.abs(root.right.val-1);
                
             }
@@ -51,6 +48,5 @@ class Solution {
                 sum+=add;
             }
         }
-        System.out.print(root.val+" ");
     }
 }
