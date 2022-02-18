@@ -1,1 +1,1 @@
-​
+https://leetcode.com/problems/count-good-nodes-in-binary-tree/discuss/635259/JavaC++Python-One-line/839936
