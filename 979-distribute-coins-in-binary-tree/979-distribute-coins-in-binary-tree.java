@@ -19,34 +19,36 @@ class Solution {
         helper(root);
         return sum;
     }
-    void helper(TreeNode root){
-      if(root==null) return ;
-        helper(root.left);
-        helper(root.right);
-        if(root.left!=null){
-            if(root.left.val<=0){
-                sum+=Math.abs(root.left.val-1);
-                root.val-=Math.abs(root.left.val-1);
-            }
-            else if(root.left.val>1){
-                int add=root.left.val-1;
-                root.left.val-=add;
-                root.val+=add;
-                sum+=add;
-            }
-        }
-        if(root.right!=null){
-            if(root.right.val<=0){
-                sum+=Math.abs(root.right.val-1);
-                root.val=root.val-Math.abs(root.right.val-1);
+    int helper(TreeNode root){
+      if(root==null) return 0;
+        int l=helper(root.left);
+        int r=helper(root.right);
+        sum+=Math.abs(l)+Math.abs(r);
+        return root.val+l+r-1;
+//         if(root.left!=null){
+//             if(root.left.val<=0){
+//                 sum+=Math.abs(root.left.val-1);
+//                 root.val-=Math.abs(root.left.val-1);
+//             }
+//             else if(root.left.val>1){
+//                 int add=root.left.val-1;
+//                 root.left.val-=add;
+//                 root.val+=add;
+//                 sum+=add;
+//             }
+//         }
+//         if(root.right!=null){
+//             if(root.right.val<=0){
+//                 sum+=Math.abs(root.right.val-1);
+//                 root.val=root.val-Math.abs(root.right.val-1);
                
-            }
-            else if(root.right.val>1){
-                int add=root.right.val-1;
-                root.right.val-=add;
-                root.val+=add;
-                sum+=add;
-            }
-        }
+//             }
+//             else if(root.right.val>1){
+//                 int add=root.right.val-1;
+//                 root.right.val-=add;
+//                 root.val+=add;
+//                 sum+=add;
+//             }
+//         }
     }
 }
