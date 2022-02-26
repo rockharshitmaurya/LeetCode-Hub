@@ -22,10 +22,9 @@ class Solution {
         int res[]=getMax(arr,l,r);
         int max=res[0];
         int idx=res[1];
-        // System.out.println("max : "+max+" index "+idx);
         TreeNode root=new TreeNode(max);
+         root.left=helper(arr,l,idx-1);
         root.right=helper(arr,idx+1,r);
-        root.left=helper(arr,l,idx-1);
         return root;
     }
     int[] getMax(int nums[],int l,int r){
