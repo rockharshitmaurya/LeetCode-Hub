@@ -60,10 +60,10 @@ class Solution
              }   
            }else if(m==0){
                if(arr[m]>arr[m+1]) return 0;
-               else return 1;
+              else return 1;
            }else if(m==n-1){
                if(arr[n-1]>arr[n-2]) return n-1;
-               else return n-1;
+              else return n-2;
            }
            
         
