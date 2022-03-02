@@ -6,7 +6,7 @@ class Solution {
         }
         int i=0,len=s.length();
         for(char c:t.toCharArray()){
-            if(i>=len) break;   
+            // if(i>=len) break;   
             if(i<len &&  c!=s.charAt(i)) arr.remove(new Character(c));
             else i++;
         }
