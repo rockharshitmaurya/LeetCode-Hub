@@ -14,10 +14,8 @@ class Solution {
         for(char c:arr){
             sb.append(c);
         }
-        // System.out.println(arr);
         if(arr.size()<len) return false;
         return sb.toString().substring(0,len).equals(s);
-        // return true;
     }
 }
 
