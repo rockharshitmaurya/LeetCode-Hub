@@ -5,7 +5,6 @@ class Solution {
         int count=1;
         int pos=0;
         for(int num:nums){
-                // System.out.println(list);
             if(num<pivot){
                 list.add(pos,num);
                 pos++;
