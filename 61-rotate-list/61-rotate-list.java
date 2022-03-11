@@ -23,7 +23,7 @@ class Solution {
         len-=k;
         int len2=0;
         temp=head;
-        System.out.println(len+" "+len2);
+        // System.out.println(len+" "+len2);
         while(len2!=(len-1)){
             len2++;
             temp=temp.next;
