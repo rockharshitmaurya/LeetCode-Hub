@@ -42,7 +42,7 @@ class Solution
         Arrays.fill(col,-1);
         for(int i=0; i<V; i++){
             if(col[i]==-1){
-            col[i]=1;
+            
             if(!checkBipartite(i,adj,col)) return false;
             }
         }
