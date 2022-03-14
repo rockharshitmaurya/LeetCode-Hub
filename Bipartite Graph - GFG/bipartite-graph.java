@@ -38,25 +38,24 @@ class Solution
 {
     public boolean isBipartite(int V, ArrayList<ArrayList<Integer>>adj)
     {
-        // Code here
         int col[]=new int[V];
         Arrays.fill(col,-1);
-        for(int i=0;i<V; i++){
+        for(int i=0; i<V; i++){
             if(col[i]==-1){
-            Queue<Integer> q=new LinkedList<>();
-            q.add(i);
             col[i]=1;
-            while(!q.isEmpty()){
-                int node=q.poll();
-                for(int num:adj.get(node)){
-                    if(col[num]==-1){
-                        q.add(num);
-                        col[num]=1-col[node];
-                    }else if(col[num]==col[node]) return false;
-                }
+            if(!checkBipartite(i,adj,col)) return false;
             }
         }
+        return true;
     }
+    boolean checkBipartite(int node,ArrayList<ArrayList<Integer>> adj,int col[]){
+        
+        for(int num:adj.get(node)){
+            if(col[num]==-1){
+                col[num]=1-col[node];
+                if(!checkBipartite(num,adj,col)) return false;
+            }else if(col[num]==col[node]) return false;
+        }
         return true;
     }
 }
