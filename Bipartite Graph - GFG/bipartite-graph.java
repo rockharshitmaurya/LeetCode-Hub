@@ -38,29 +38,25 @@ class Solution
 {
     public boolean isBipartite(int V, ArrayList<ArrayList<Integer>>adj)
     {
-        int colour[]=new int[V];
-        Arrays.fill(colour,-1);
-        // Queue<Integer> q=new LinkedList<>();
-        // q.add(i);
-        // colour[i]=1;
-        for(int i=0; i<V; i++){
-            if(colour[i]==-1){
-                Queue<Integer> q=new LinkedList<>();
-                q.add(i);
-                colour[i]=1;
-                while(!q.isEmpty()){
-                    int val=q.poll();
-                    for(int num:adj.get(val)){
-                        if(colour[num]==-1){
-                            colour[num]=1-colour[val];
-                            q.add(num);
-                        }else if(colour[val]==colour[num]){
-                            return false;
-                        }
-                    }
+        // Code here
+        int col[]=new int[V];
+        Arrays.fill(col,-1);
+        for(int i=0;i<V; i++){
+            if(col[i]==-1){
+            Queue<Integer> q=new LinkedList<>();
+            q.add(i);
+            col[i]=1;
+            while(!q.isEmpty()){
+                int node=q.poll();
+                for(int num:adj.get(node)){
+                    if(col[num]==-1){
+                        q.add(num);
+                        col[num]=1-col[node];
+                    }else if(col[num]==col[node]) return false;
                 }
             }
         }
+    }
         return true;
     }
 }
