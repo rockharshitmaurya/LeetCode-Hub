@@ -60,33 +60,60 @@ class Node
 }
 class Solution
 {
-    //Function to find sum of weights of edges of the Minimum Spanning Tree.
-    static int spanningTree(int V, ArrayList<ArrayList<ArrayList<Integer>>> adj) 
-    {
+    static int spanningTree(int V, ArrayList<ArrayList<ArrayList<Integer>>> adj){
         int key[]=new int[V];
         boolean mst[]=new boolean[V];
         int parent[]=new int[V];
+        PriorityQueue<Node> pq=new PriorityQueue<Node>((o1,o2)->(o1.weight-o2.weight));
         Arrays.fill(key,Integer.MAX_VALUE);
         Arrays.fill(parent,-1);
-        PriorityQueue<Node> pq = new PriorityQueue<Node>((o1,o2)->(o1.weight-o2.weight));
         parent[0]=-1;
         key[0]=0;
         pq.offer(new Node(0,key[0]));
         while(!pq.isEmpty()){
             int u=pq.poll().v;
             mst[u]=true;
-        for(ArrayList<Integer> it:adj.get(u)){
-            if(mst[it.get(0)]==false && it.get(1)<key[it.get(0)]){
-                parent[it.get(0)]=u;
-                key[it.get(0)]=it.get(1);
-                pq.offer(new Node(it.get(0),key[it.get(0)]));
+            for(ArrayList<Integer> list:adj.get(u)){
+                if(mst[list.get(0)]==false && list.get(1)<key[list.get(0)]){
+                    key[list.get(0)]=list.get(1);
+                    parent[list.get(0)]=u;
+                    pq.offer(new Node(list.get(0),key[list.get(0)]));
+                }
             }
         }
-        
-        }
-        // System.out.println(Arrays.toString(key));
-        int sum=0;
+         int sum=0;
         for(int num:key) sum+=num;
         return sum;
+        
     }
+    
+    //Function to find sum of weights of edges of the Minimum Spanning Tree.
+    // static int spanningTree(int V, ArrayList<ArrayList<ArrayList<Integer>>> adj) 
+    // {
+    //     int key[]=new int[V];
+    //     boolean mst[]=new boolean[V];
+    //     int parent[]=new int[V];
+    //     Arrays.fill(key,Integer.MAX_VALUE);
+    //     Arrays.fill(parent,-1);
+    //     PriorityQueue<Node> pq = new PriorityQueue<Node>((o1,o2)->(o1.weight-o2.weight));
+    //     parent[0]=-1;
+    //     key[0]=0;
+    //     pq.offer(new Node(0,key[0]));
+    //     while(!pq.isEmpty()){
+    //         int u=pq.poll().v;
+    //         mst[u]=true;
+    //     for(ArrayList<Integer> it:adj.get(u)){
+    //         if(mst[it.get(0)]==false && it.get(1)<key[it.get(0)]){
+    //             parent[it.get(0)]=u;
+    //             key[it.get(0)]=it.get(1);
+    //             pq.offer(new Node(it.get(0),key[it.get(0)]));
+    //         }
+    //     }
+        
+    //     }
+    //     // System.out.println(Arrays.toString(key));
+    //     int sum=0;
+    //     for(int num:key) sum+=num;
+    //     return sum;
+    // }
 }
