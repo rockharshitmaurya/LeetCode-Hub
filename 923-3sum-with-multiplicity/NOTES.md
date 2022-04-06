@@ -1,0 +1,1 @@
+[Think Outside of The Box](https://leetcode.com/problems/3sum-with-multiplicity/discuss/181128/10-lines-Super-Super-Easy-Java-Solution)
