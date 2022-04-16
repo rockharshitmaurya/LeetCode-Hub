@@ -14,7 +14,6 @@ class Solution {
         if(rest>0) list.add(0,1);
         int ans[]=new int[list.size()];
         for(int i=0; i<list.size(); i++) ans[i]=list.get(i);
-        // System.out.println(list);
         return ans;
     }
 }
