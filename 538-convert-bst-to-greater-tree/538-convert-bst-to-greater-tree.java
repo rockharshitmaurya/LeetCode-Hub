@@ -16,14 +16,13 @@
 class Solution {
     public TreeNode convertBST(TreeNode root) {
         if(root==null) return null;
-        int set[]={0};
-        dfs(root,set);
+        dfs(root,new int[]{0});
         return root;
     }
     void dfs(TreeNode root,int set[]){
         if(root==null) return;
         dfs(root.right,set);
-        set[0]+=root.val; root.val=set[0];
+        root.val=(set[0]+=root.val);
         dfs(root.left,set);
     }
 }
