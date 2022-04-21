@@ -6,7 +6,7 @@ class MyHashSet {
     }
     
     public void add(int key) {
-        arr[key]++;
+        arr[key]=1;
     }
     
     public void remove(int key) {
