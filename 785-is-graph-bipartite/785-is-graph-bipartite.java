@@ -12,7 +12,7 @@ class Solution {
                      if(color[n]==color[node]) return false;
                       else if(color[n]==0){
                         q.offer(n);
-                        color[n]=-color[node];
+                        color[n]=color[node]*-1;
                       }
                   }
               }
