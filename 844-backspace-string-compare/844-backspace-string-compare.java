@@ -15,7 +15,7 @@ class Solution {
         
         StringBuilder sb2=new StringBuilder();
         while(!st2.isEmpty()) sb2.append(st2.pop());
-        System.out.println(sb1+" "+sb2);
+        // System.out.println(sb1+" "+sb2);
         return sb1.toString().equals(sb2.toString());
     }
 }
