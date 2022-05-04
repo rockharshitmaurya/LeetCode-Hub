@@ -9,7 +9,7 @@ class Solution {
                 else map.put(find,map.get(find)-1);
                 ans++;
             }else{
-                map.put(num,map.getOrDefault(num,0)+1);
+                if(num<k) map.put(num,map.getOrDefault(num,0)+1);
             }
         }
         return ans;
