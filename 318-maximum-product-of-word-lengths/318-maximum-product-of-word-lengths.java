@@ -1,6 +1,6 @@
 class Solution {
     public int maxProduct(String[] words) {
-       Arrays.sort(words);
+       // Arrays.sort(words);
         int ans=0,n=words.length;
         for(int i=n-1; i>=0; i--){
             HashSet<Character> set=addSet(words[i]);
