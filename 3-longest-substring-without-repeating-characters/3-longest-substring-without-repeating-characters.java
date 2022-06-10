@@ -8,14 +8,11 @@ class Solution {
             if(map.containsKey(ch) && map.get(ch)>=seen){
                 int idx=map.get(ch);
                 seen=idx+1;
-                System.out.println(seen);
             }else{
                 ans=Math.max(ans,i-seen);
             }
                 map.put(ch,i);
         }
-        System.out.println(seen);
         return ans+1;
     }
 }
-// abcade
