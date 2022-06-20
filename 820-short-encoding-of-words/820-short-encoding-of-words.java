@@ -24,7 +24,6 @@ class Trie{
 class Solution {
     public int minimumLengthEncoding(String[] words) {
         Arrays.sort(words, (a, b)->Integer.compare(b.length(), a.length()));
-        // System.out.println(Arrays.toString(words));
         Trie root=new Trie();
         int ans=0;
         for(String str:words){
