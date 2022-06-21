@@ -10,7 +10,7 @@ class Solution {
                 
                 bricks-=pq.poll();
             }
-            System.out.println(bricks+" "+pq.size()); 
+            // System.out.println(bricks+" "+pq.size()); 
             if(bricks<0) return i;
         }
         return heights.length-1;
