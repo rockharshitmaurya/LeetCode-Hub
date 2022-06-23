@@ -9,7 +9,7 @@ class NumArray {
     }
     
     public void update(int index, int val) {
-        
+        // num[index]=val-num[index];
         updateSeg(0,index,val,0,num.length-1);
     }
     
@@ -20,7 +20,8 @@ class NumArray {
         if (i<start || i>end){
             return;
         }
-        
+        // seg[idx]+=diff;
+        // if(start==end) return;
         if(start==end){
             if(start==i)
                 seg[idx]=diff;
