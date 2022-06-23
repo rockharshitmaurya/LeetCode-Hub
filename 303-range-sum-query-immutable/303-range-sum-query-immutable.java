@@ -10,13 +10,13 @@ class NumArray {
         return getSum(0,0,arr.length-1,left,right);
     }
     int getSum(int idx,int l,int r,int left,int right){
-        if(l>=left && r<=right){
+        if(l>=left && r<=right){ //totle overlap
             return seg[idx];
         }
-        if (l>right || r<left) {
+        if (l>right || r<left) { //no overlap
             return 0;
         }
-        int mid=(l+r)>>1;
+        int mid=(l+r)>>1; //partial overlap
         return getSum(2*idx+1,l,mid,left,right)+getSum(2*idx+2,mid+1,r,left,right);
     }
     void build(int idx,int start,int end){
