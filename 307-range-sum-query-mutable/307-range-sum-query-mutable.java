@@ -31,34 +31,13 @@ class NumArray {
         updateSeg(2*idx+2,i,diff,mid+1,end);
         seg[idx]=seg[2*idx+1]+seg[2*idx+2];
     }
-//     void updateSeg(int pos, int index, int val, int left, int right) {
-//         // no overlap
-//         if(index <left || index >right) return;
-        
-//         // total overlap
-//         if(left==right){
-//             if(left==index)
-//                 seg[pos]=val;
-//             return;
-//         }
-
-//         // partial overlap
-//         int mid=(left+right)/2;
-//         updateSeg(2*pos+1,left,mid,index,val); // left child
-//         updateSeg(2*pos+2,mid+1,right,index,val); // right child
-//         seg[pos]=seg[2*pos+1]+seg[2*pos+2];
-//     }
     int query(int idx,int start,int end,int l,int r){
-        // if(start>=l && end<=r){
-        //     return seg[idx];
-        // }
-        if (l <= start && r>= end){ // total overlap
+        if (l <= start && r>= end){ 
             return seg[idx];
         }
         if (l>end || r<start) {
             return 0;
         }
-        // if(high<l || low>r) return -1;
         int mid=(start+end)>>1;
         return query(2*idx+1,start,mid,l,r)+query(2*idx+2,mid+1,end,l,r);
     }
