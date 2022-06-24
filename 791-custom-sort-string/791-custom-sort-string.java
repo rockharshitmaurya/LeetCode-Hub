@@ -1,20 +1,14 @@
 class Solution {
-    public String customSortString(String order, String s) {
-        HashMap<Character,Integer> map=new HashMap<>();
-        for(char c:s.toCharArray()){
-            map.put(c,map.getOrDefault(c,0)+1);
+    public String customSortString(String S, String T) {
+int[] count = new int[26];
+        for (char c : T.toCharArray()) { ++count[c - 'a']; }  // count each char in T.
+        StringBuilder sb = new StringBuilder();
+        for (char c : S.toCharArray()) {                            
+            while (count[c - 'a']-- > 0) { sb.append(c); }    // sort chars both in T and S by the order of S.
         }
-        StringBuilder ans=new StringBuilder();
-        for(char c:order.toCharArray()){
-            if(!map.containsKey(c)) continue;
-            int k=map.get(c);
-            map.remove(c);
-            while(k-->0) ans.append(c);
+        for (char c = 'a'; c <= 'z'; ++c) {
+            while (count[c - 'a']-- > 0) { sb.append(c); }    // group chars in T but not in S.
         }
-        for(Map.Entry<Character,Integer> mp:map.entrySet()){
-            char ch=mp.getKey(); int k=mp.getValue();
-            while(k-->0) ans.append(ch);
-        }
-     return String.valueOf(ans);   
+        return sb.toString();  
     }
 }
