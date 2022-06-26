@@ -11,10 +11,11 @@ class Solution {
             }
             return;
         }
-        if(arr[i]<=target){
-            ds.add(arr[i]);
-            helper(arr,i,target-arr[i],res,ds);
-            ds.remove(ds.size()-1);
+        if(arr[i]<=target){ //only pick when the current element is less than or equal to target
+            ds.add(arr[i]); // add curent element
+                            //insted of adding current elemnt to a new variable we will try to reduce the current target to zero
+            helper(arr,i,target-arr[i],res,ds); //pick, pick and pick the current element until , the target become less than the current element
+            ds.remove(ds.size()-1); //remove the current element
         }
         helper(arr,i+1,target,res,ds);
     }
