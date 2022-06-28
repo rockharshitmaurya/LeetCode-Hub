@@ -3,7 +3,6 @@ class Solution {
         int count[]=new int[26];
         for(char ch:s.toCharArray()) count[ch-'a']++;
         Arrays.sort(count);
-        System.out.println(Arrays.toString(count));
         int ans=0;
         for(int i=24; i>=0; i--){
             if(count[i]==0) break;
