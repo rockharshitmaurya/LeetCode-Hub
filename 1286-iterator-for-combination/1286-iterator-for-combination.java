@@ -1,5 +1,5 @@
 class CombinationIterator {
-    ArrayList<String> pq=new ArrayList<>();
+    LinkedList<String> pq = new LinkedList<String>();
     public CombinationIterator(String ch, int cl) {
         helper(ch,cl,0,"");
     }
