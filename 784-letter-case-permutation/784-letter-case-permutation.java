@@ -9,16 +9,11 @@ class Solution {
             map.put(A,a);
             a++;A++;
         }
-        // System.out.println(map);
         helper(ch,0,ans);
         return ans;
     }
     void helper(char ch[],int idx,List<String> ans){
-        // if(idx==ch.length) {
             ans.add(new String(ch));
-            // return;
-        // }
-        System.out.print(new String(ch)+" ");
         for(int i=idx; i<ch.length; i++){
             if(Character.isDigit(ch[i])) continue;
             ch[i]=map.get(ch[i]);
