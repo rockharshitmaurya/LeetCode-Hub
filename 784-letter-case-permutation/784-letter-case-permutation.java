@@ -1,0 +1,29 @@
+class Solution {
+    HashMap<Character,Character> map=new HashMap<>();
+    public List<String> letterCasePermutation(String s) {
+        char ch[]=s.toCharArray();
+        List<String> ans=new ArrayList<String>();
+        char a='a',A='A';
+        for(int i=0; i<26; i++){
+            map.put(a,A);
+            map.put(A,a);
+            a++;A++;
+        }
+        // System.out.println(map);
+        helper(ch,0,ans);
+        return ans;
+    }
+    void helper(char ch[],int idx,List<String> ans){
+        // if(idx==ch.length) {
+            ans.add(new String(ch));
+            // return;
+        // }
+        System.out.print(new String(ch)+" ");
+        for(int i=idx; i<ch.length; i++){
+            if(Character.isDigit(ch[i])) continue;
+            ch[i]=map.get(ch[i]);
+            helper(ch,i+1,ans);
+            ch[i]=map.get(ch[i]);
+        }
+    }
+}
