@@ -1,5 +1,5 @@
 class CombinationIterator {
-    PriorityQueue<String> pq=new PriorityQueue<>();
+    ArrayList<String> pq=new ArrayList<>();
     public CombinationIterator(String ch, int cl) {
         helper(ch,cl,0,"");
     }
@@ -14,7 +14,7 @@ class CombinationIterator {
         helper(ch,cl,idx+1,str);
     }
     public String next() {
-       return pq.poll(); 
+       return pq.remove(0); 
     }
     
     public boolean hasNext() {
