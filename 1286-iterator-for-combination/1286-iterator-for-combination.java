@@ -1,24 +1,27 @@
 class CombinationIterator {
-    LinkedList<String> pq = new LinkedList<String>();
+    int val=1,len,mask=0;
+    Queue<String> q=new PriorityQueue<>();
     public CombinationIterator(String ch, int cl) {
-        helper(ch,cl,0,"");
-    }
-    public void helper(String ch,int cl,int idx, String str){
-        if(idx==ch.length()){
-            if(str.length()==cl) pq.add(str);
-            return;
+        int n=ch.length();
+        for(int i=0; i<(1<<n); i++){
+            StringBuilder sb=new StringBuilder();
+            if(Integer.bitCount(i)==cl){
+                for(int j=0; j<n; j++){
+                    if((i&(1<<j))>0) sb.append(ch.charAt(j));
+                }
+                q.add(sb+"");
+            }
         }
-        str+=ch.charAt(idx)+"";
-        helper(ch,cl,idx+1,str);
-        str=str.substring(0,str.length()-1);
-        helper(ch,cl,idx+1,str);
+        // Collections.sort(q);
+        System.out.println(q);
     }
+    
     public String next() {
-       return pq.remove(0); 
+       return q.poll();
     }
     
     public boolean hasNext() {
-        return !pq.isEmpty();
+        return !q.isEmpty();
     }
 }
 
