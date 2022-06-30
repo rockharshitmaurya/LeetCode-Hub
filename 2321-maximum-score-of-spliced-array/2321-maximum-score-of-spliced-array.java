@@ -14,7 +14,7 @@ class Solution {
             if(res2<0) res2=0;
 
         }
-        System.out.println(sum1+" "+sum2+" "+max1+" "+max2);
+        // System.out.println(sum1+" "+sum2+" "+max1+" "+max2);
         ans=Math.max(sum1,sum2);
         ans=Math.max(ans,sum1+max1);
         ans=Math.max(ans,sum2+max2);
