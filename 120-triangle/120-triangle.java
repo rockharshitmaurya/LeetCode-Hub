@@ -2,9 +2,8 @@ class Solution {
     public int minimumTotal(List<List<Integer>> triangle) {
         List<List<Integer>> memo=new ArrayList<>();
         for(int i=0; i<triangle.size(); i++){
-            memo.add(new ArrayList<Integer>(Collections.nCopies(triangle.size(), -1)));
+            memo.add(new ArrayList<Integer>(Collections.nCopies(triangle.get(i).size(), -1)));
         }
-        // System.out.println(memo);
         return helper(triangle,0,0,memo);
     }
     int helper(List<List<Integer>> triangle,int level,int idx,List<List<Integer>> memo){
