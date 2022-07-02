@@ -14,7 +14,6 @@ class Solution {
         }
         h_max=Math.max(h_max,hc[0]);
         h_max=Math.max(h_max,h-hc[hc.length-1]);
-        System.out.println(h_max+" "+v_max);
         return (int)((h_max*v_max)%mod);
     }
 }
