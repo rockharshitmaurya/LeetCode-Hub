@@ -11,14 +11,10 @@ class Solution {
             if(grid[0][0]==1) return 0;
             else return 1;
         }
-        if(row<0 || col<0 || row>=grid.length || col>=grid[0].length || grid[row][col]==1) return 0;
+        if(row<0 || col<0 || grid[row][col]==1) return 0;
         if(memo[row][col]!=-1) return memo[row][col];
-        // grid[row][col]=-1;
-         // memo[row][col]=0;
         int l=helper(grid,row-1,col,memo);
         int r=helper(grid,row,col-1,memo);
-         // memo[row][col]=-1;
-        // grid[row][col]=0;
         memo[row][col]=l+r;
         return l+r;
     }
