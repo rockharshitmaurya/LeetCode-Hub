@@ -2,11 +2,18 @@ class Solution {
     public int uniquePathsWithObstacles(int[][] og) {
         int m=og.length,n=og[0].length;
         if(og[m-1][n-1]==1 || og[0][0]==1) return 0;
+        int dp[][]=new int[m][n]; dp[0][0]=1;
+        for(int i=1; i<n; i++) dp[0][i]=og[0][i]==1?0:dp[0][i-1];
+        for(int i=1; i<m; i++) dp[i][0]=og[i][0]==1?0:dp[i-1][0];
         
-        int memo[][]=new int[m][n];
-        for(int arr[]:memo)
-            Arrays.fill(arr,-1);
-        return helper(og,m-1,n-1,memo);
+        for(int i=1; i<m; i++){
+            for(int j=1; j<n; j++){
+                dp[i][j]=og[i][j]==0?(dp[i-1][j]+dp[i][j-1]):0;
+            }
+        }
+        for(int arr[]:dp)
+            System.out.println(Arrays.toString(arr));
+        return dp[m-1][n-1];
     }
      int helper(int grid[][],int row,int col,int memo[][]){
         if(row==0 && col==0){
