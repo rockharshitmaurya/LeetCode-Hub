@@ -1,11 +1,18 @@
 class Solution {
     public int minimumTotal(List<List<Integer>> triangle) {
- int[] A = new int[triangle.size()+1];
-    for(int i=triangle.size()-1;i>=0;i--){
-        for(int j=0;j<triangle.get(i).size();j++){
-            A[j] = Math.min(A[j],A[j+1])+triangle.get(i).get(j);
+        List<List<Integer>> memo=new ArrayList<>();
+        for(int i=0; i<triangle.size(); i++){
+            memo.add(new ArrayList<Integer>(Collections.nCopies(triangle.size(), -1)));
         }
+        // System.out.println(memo);
+        return helper(triangle,0,0,memo);
     }
-    return A[0];
+    int helper(List<List<Integer>> triangle,int level,int idx,List<List<Integer>> memo){
+        if(level==triangle.size()-1) return triangle.get(level).get(idx);
+        if(memo.get(level).get(idx)!=-1) return memo.get(level).get(idx);
+        int dwn=triangle.get(level).get(idx)+helper(triangle,level+1,idx,memo);
+        int dig=triangle.get(level).get(idx)+helper(triangle,level+1,idx+1,memo);
+        memo.get(level).add(idx,Math.min(dwn,dig));
+        return Math.min(dwn,dig);
     }
 }
