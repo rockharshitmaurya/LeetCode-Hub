@@ -1,6 +1,8 @@
 class Solution {
     public int uniquePathsWithObstacles(int[][] og) {
         int m=og.length,n=og[0].length;
+        if(og[m-1][n-1]==1 || og[0][0]==1) return 0;
+        
         int memo[][]=new int[m][n];
         for(int arr[]:memo)
             Arrays.fill(arr,-1);
@@ -8,8 +10,7 @@ class Solution {
     }
      int helper(int grid[][],int row,int col,int memo[][]){
         if(row==0 && col==0){
-            if(grid[0][0]==1) return 0;
-            else return 1;
+            return 1;
         }
         if(row<0 || col<0 || grid[row][col]==1) return 0;
         if(memo[row][col]!=-1) return memo[row][col];
