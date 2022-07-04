@@ -1,5 +1,8 @@
 class Solution {
     public int cherryPickup(int[][] grid) {
+        
+        //recursion + memoization
+        
         int row=grid.length,col=grid[0].length;
         int dp[][][]=new int[row][col][col];
         for(int arr[][]:dp)
