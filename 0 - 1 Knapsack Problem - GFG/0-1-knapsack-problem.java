@@ -51,9 +51,17 @@ class Solution
     static int knapSack(int W, int wt[], int val[], int n) 
     { 
       int dp[][]=new int[n][W+1];
-      for(int arr[]:dp)
-        Arrays.fill(arr,-1);
-      return helper(n-1,W,wt,val,n,dp);   
+      for(int weight=wt[0]; weight<=W; weight++) dp[0][weight]=val[0];
+      for(int idx=1; idx<n; idx++){
+          for(int w=0; w<=W; w++){
+              int take=Integer.MIN_VALUE;
+                if(wt[idx]<=w) take=val[idx]+dp[idx-1][w-wt[idx]];
+                int notTake=dp[idx-1][w];
+                dp[idx][w]=Math.max(take,notTake);
+          }
+      }
+      
+        return dp[n-1][W];
     } 
     static int helper(int idx,int W,int wt[],int val[],int n,int dp[][]){
         if(idx==0) {
@@ -65,7 +73,6 @@ class Solution
         if(wt[idx]<=W) take=val[idx]+helper(idx-1,W-wt[idx],wt,val,n,dp);
         int notTake=helper(idx-1,W,wt,val,n,dp);
         return dp[idx][W]=Math.max(take,notTake);
-        // return dp[idx];
     }
 }
 
