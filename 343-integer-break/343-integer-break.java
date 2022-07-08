@@ -1,20 +1,21 @@
 class Solution {
-    int ans=0;
-    public int integerBreak(int n) {        
+    // int ans=0;
+    public int integerBreak(int n) {
+        if(n==2) return 1;
         int arr[]=new int[n-1];
-        int dp[][]=new int[n][n+1];
-        for(int sub[]:dp) Arrays.fill(sub,-1);
-        for(int i=0; i<n-1; i++) arr[i]=i+1;
-        ans=helper(n-2,arr,n,1,dp);
-        return ans;
-    }
-    int  helper(int idx,int arr[],int n,int pro,int dp[][]){
-        if(idx==-1) return 0;
-        if(n==0) return 1;
-        if(dp[idx][n]!=-1) return dp[idx][n];
-        int left=1,right=1;
-        if(arr[idx]<=n) left=arr[idx]*helper(idx,arr,n-arr[idx],pro*arr[idx],dp);
-        right=helper(idx-1,arr,n,pro,dp);
-        return dp[idx][n]=Math.max(left,right);
+        int len=arr.length;
+        int dp[][]=new int[len][n+1];
+        for(int i=0; i<len; i++) arr[i]=i+1;
+        
+        for(int i=0; i<len; i++) dp[i][0]=1;
+        for(int idx=1; idx<len; idx++){
+            for(int k=1; k<=n; k++){
+                int left=1,right=1;
+                if(arr[idx]<=k) left=arr[idx]*dp[idx][k-arr[idx]];
+                right=dp[idx-1][k];
+                dp[idx][k]=Math.max(left,right);
+            }
+        }
+        return dp[n-2][n];
     }
 }
