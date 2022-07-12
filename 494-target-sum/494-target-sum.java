@@ -2,6 +2,7 @@ class Solution {
     HashMap<String,Integer> map=new HashMap<>();
     public int findTargetSumWays(int[] nums, int target) {
         int n=nums.length;
+        // int dp[][]=new int[n][target+1];
         return helper(nums,n-1,target);
     }
     int helper(int nums[],int idx,int target){
