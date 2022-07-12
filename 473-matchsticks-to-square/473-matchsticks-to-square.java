@@ -12,7 +12,7 @@ class Solution {
             return true;
         }
             for(int i=0; i<4; i++){
-                if(sum[i]+arr[idx]>target) continue;
+                if(sum[i]+arr[idx]>target || (i > 0 && sum[i] == sum[i - 1])) continue;
                 sum[i]+=arr[idx];
                 if(helper(arr,target,idx+1,sum)) return true;
                 sum[i]-=arr[idx];
