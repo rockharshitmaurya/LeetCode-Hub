@@ -3,8 +3,8 @@ class Solution {
         long sum=0;
         for(int num:arr) sum+=num;
         if(sum%4!=0) return false;
-        Arrays.sort(arr);
-        reverse(arr);
+        // Arrays.sort(arr);
+        // reverse(arr);
         return helper(arr,((int)sum/4),0,new int[4]);
     }
     boolean helper(int arr[],int target,int idx,int sum[]){
