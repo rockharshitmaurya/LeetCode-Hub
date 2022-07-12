@@ -26,8 +26,21 @@ class Solution{
     public int cutRod(int price[], int n) {
         dp=new int[n+1];
         // for(int sub[]:dp) 
-            Arrays.fill(dp,-1);
-        return helper(n-1,price,n);
+            // Arrays.fill(dp,-1);
+        // return helper(n-1,price,n);
+        for(int val=1; val<=n; val++) 
+           dp[val]=(price[0]*(val/1));
+           
+        for(int idx=1; idx<n; idx++){
+            for(int sum=1; sum<=n; sum++){
+                int notPick=dp[sum];
+                int pick=0;
+                if((idx+1)<=sum) pick=price[idx]+dp[sum-(idx+1)];
+                
+                dp[sum]=Math.max(pick,notPick);
+            }
+        }
+        return dp[n];
     }
     int helper(int idx,int price[],int sum){
         if(idx==0){
