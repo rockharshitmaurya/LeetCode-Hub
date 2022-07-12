@@ -22,22 +22,21 @@ class RodCutting {
 
 
 class Solution{
-    int dp[][];
+    int dp[];
     public int cutRod(int price[], int n) {
-        dp=new int[n][n+1];
-        for(int sub[]:dp) Arrays.fill(sub,-1);
-        int arr[]=new int[n];
-        for(int i=0; i<n; i++) arr[i]=i+1;
-        return helper(arr,n-1,price,n);
+        dp=new int[n+1];
+        // for(int sub[]:dp) 
+            Arrays.fill(dp,-1);
+        return helper(n-1,price,n);
     }
-    int helper(int arr[],int idx,int price[],int sum){
+    int helper(int idx,int price[],int sum){
         if(idx==0){
             return price[0]*(sum/1);
         }
-        if(dp[idx][sum]!=-1) return dp[idx][sum];
+        if(dp[sum]!=-1) return dp[sum];
         int pick=0;
-        if((idx+1)<=sum) pick=price[idx]+helper(arr,idx,price,sum-(idx+1));
-        int notPick=helper(arr,idx-1,price,sum);
-        return dp[idx][sum]=Math.max(pick,notPick);
+        if((idx+1)<=sum) pick=price[idx]+helper(idx,price,sum-(idx+1));
+        int notPick=helper(idx-1,price,sum);
+        return dp[sum]=Math.max(pick,notPick);
     }
 }
