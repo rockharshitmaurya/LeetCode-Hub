@@ -32,8 +32,9 @@ class Solution{
     }
     int helper(int arr[],int idx,int price[],int sum){
         if(idx==0){
-            if(sum%arr[0]==0) return price[0]*(sum/arr[0]);
-            return 0;
+            // if(sum%arr[0]==0) 
+            return price[0]*(sum/1);
+            // return 0;
         }
         if(dp[idx][sum]!=-1) return dp[idx][sum];
         int pick=0;
