@@ -32,13 +32,11 @@ class Solution{
     }
     int helper(int arr[],int idx,int price[],int sum){
         if(idx==0){
-            // if(sum%arr[0]==0) 
             return price[0]*(sum/1);
-            // return 0;
         }
         if(dp[idx][sum]!=-1) return dp[idx][sum];
         int pick=0;
-        if(arr[idx]<=sum) pick=price[idx]+helper(arr,idx,price,sum-arr[idx]);
+        if((idx+1)<=sum) pick=price[idx]+helper(arr,idx,price,sum-(idx+1));
         int notPick=helper(arr,idx-1,price,sum);
         return dp[idx][sum]=Math.max(pick,notPick);
     }
