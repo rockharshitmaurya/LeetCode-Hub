@@ -15,8 +15,8 @@ class Solution {
             }
             if(k!=0 && !set.contains(d_time)) ans=d_time;
         }
-        System.out.println(Arrays.toString(bus));
-        System.out.println(Arrays.toString(pass));
+        // System.out.println(Arrays.toString(bus));
+        // System.out.println(Arrays.toString(pass));
         return ans;
     }
 }
