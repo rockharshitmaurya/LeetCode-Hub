@@ -18,6 +18,19 @@ class Solution {
                         }
             }
         }
+        // String ans="";
+        // while(n>0 && m>0){
+        //     if(text1.charAt(n-1)==text2.charAt(m-1)){
+        //         ans=text1.charAt(n-1)+ans;
+        //         n--; m--;
+        //     }else if(dp[n-1][m]>dp[n][m-1]){
+        //         n--;
+        //     }else{
+        //         m--;
+        //     }
+        // }
+        // System.out.println(ans);
+        // for printning the longest cmmman subsequnece
         return dp[n][m];
         
     }
