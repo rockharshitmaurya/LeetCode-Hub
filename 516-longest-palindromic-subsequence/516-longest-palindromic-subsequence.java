@@ -1,6 +1,6 @@
 class Solution {
     public int longestPalindromeSubseq(String text1) {
-        String text2=new StringBuilder(text1).reverse().toString();
+        String text2=new StringBuilder(text1).reverse().toString(); // question boild down to find longest comman subsequnece #striverDP26
         int n=text1.length(),m=text2.length();
          int dp[][]=new int[n+1][m+1];
         for(int idx1=1; idx1<=n; idx1++){
