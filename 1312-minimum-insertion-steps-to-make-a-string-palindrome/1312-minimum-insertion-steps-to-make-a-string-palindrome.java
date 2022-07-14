@@ -1,6 +1,7 @@
 class Solution {
     public int minInsertions(String s) {
        return s.length()-longestPalindromeSubseq(s);
+        //Ans should be len of the String -minus longest comman palindromic subsqeunce
     }
     public int longestPalindromeSubseq(String text1) {
         String text2=new StringBuilder(text1).reverse().toString(); // question boild down to find longest comman subsequnece #striverDP26
