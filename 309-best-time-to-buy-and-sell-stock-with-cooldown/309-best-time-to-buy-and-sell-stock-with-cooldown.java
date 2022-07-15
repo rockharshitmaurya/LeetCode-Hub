@@ -1,7 +1,7 @@
 class Solution {
     public int maxProfit(int[] price) {
         int n=price.length;
-        int dp[][]=new int[n+2][2];
+        int dp[][]=new int[n+2][2]; //n+2 size because dp[idx+2][1]; this line will be coverd
         for(int idx=n-1; idx>=0; idx--){
             for(int buy=0; buy<=1; buy++){
                     int profit=0;
