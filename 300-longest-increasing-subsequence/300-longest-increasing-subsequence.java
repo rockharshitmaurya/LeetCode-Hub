@@ -1,20 +1,30 @@
 class Solution {
-    int dp[][];
+    
     public int lengthOfLIS(int[] nums) {
-        dp=new int[nums.length][nums.length+1];
-        for(int arr[]:dp) Arrays.fill(arr,-1);
-        return helper(nums,0,-1);
-    }
-    int helper(int nums[],int idx,int prev){
-        if(idx==nums.length){
-            return 0;
+        int n=nums.length;
+       int dp[][]=new int[n+1][n+1];
+        for(int idx=n-1; idx>=0; idx--){
+            for(int prev=idx-1; prev>=-1; prev--){
+                int pick=0;
+                if(prev==-1 || nums[idx]>nums[prev]){
+                   pick=1+dp[idx+1][idx+1];
+                }
+                int notpick=dp[idx+1][prev+1];
+                dp[idx][prev+1]=Math.max(pick,notpick);
+            }
         }
-        if(dp[idx][prev+1]!=-1) return dp[idx][prev+1];
-        int pick=0;
-        if(prev==-1 || nums[idx]>nums[prev]){
-            pick=1+helper(nums,idx+1,idx);
-        }
-        int notpick=helper(nums,idx+1,prev);
-        return dp[idx][prev+1]=Math.max(pick,notpick);
+        return dp[0][0];
     }
+    // int helper(int nums[],int idx,int prev){
+    //     if(idx==nums.length){
+    //         return 0;
+    //     }
+    //     if(dp[idx][prev+1]!=-1) return dp[idx][prev+1];
+    //     int pick=0;
+    //     if(prev==-1 || nums[idx]>nums[prev]){
+    //         pick=1+helper(nums,idx+1,idx);
+    //     }
+    //     int notpick=helper(nums,idx+1,prev);
+    //     return dp[idx][prev+1]=Math.max(pick,notpick);
+    // }
 }
