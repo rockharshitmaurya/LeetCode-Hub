@@ -21,7 +21,7 @@ class Solution {
         } 
         // System.out.println(i+" "+j);
         if(dp[i][j]!=-1) return dp[i][j];
-        grid[i][j]=1;
+        // grid[i][j]=1;
         if(grid[i][j+1]!=1){
             dp[i][j]=helper(grid,i,j+1,n,m);
         }else{
@@ -29,7 +29,7 @@ class Solution {
             int down=1+Math.min(helper(grid,i+1,j,n,m),helper(grid,i+2,j,n,m));
             dp[i][j]=Math.min(up,down);
         }
-        grid[i][j]=0;
+        // grid[i][j]=0;
         return dp[i][j];
     }
 }
