@@ -11,7 +11,7 @@ class Solution {
         if(dp[idx][j]!=-1) return dp[idx][j];
         int profit=0;
         if(buy){
-            profit=Math.max(-arr[idx]+helper(arr,idx+1,false),0+helper(arr,idx+1,true));
+            profit=Math.max(helper(arr,idx+1,false)-arr[idx],0+helper(arr,idx+1,true));
         }else{
             profit=Math.max(arr[idx]+helper(arr,idx+1,true),0+helper(arr,idx+1,false));
         }
