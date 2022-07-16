@@ -1,30 +1,25 @@
 class Solution {
-    int grid[][],dp[][][];
-    int mod=(int)1e9+7;
-    public int findPaths(int m, int n, int maxMove, int startRow, int startColumn) {
-        grid=new int[m][n];
-        dp=new int[m][n][maxMove+1];
-        for(int arr2[][]:dp) 
-            for(int arr[]:arr2)
-                Arrays.fill(arr,-1);
-        
-       
-        int res=helper(startRow,startColumn,maxMove);
-         // for(int num[]:dp){
-         //    for(int ni:num)
-         //        System.out.print(ni+" ");
-         //     System.out.println();
-         // }
-        return res;
+  public int findPaths(int m, int n, int N, int x, int y) {
+    int M = 1000000000 + 7;
+    int dp[][] = new int[m][n];
+    dp[x][y] = 1;
+    int count = 0;
+    for (int moves = 1; moves <= N; moves++) {
+      int[][] temp = new int[m][n];
+      for (int i = 0; i < m; i++) {
+        for (int j = 0; j < n; j++) {
+          if (i == m - 1) count = (count + dp[i][j]) % M;
+          if (j == n - 1) count = (count + dp[i][j]) % M;
+          if (i == 0) count = (count + dp[i][j]) % M;
+          if (j == 0) count = (count + dp[i][j]) % M;
+          temp[i][j] = (
+              ((i > 0 ? dp[i - 1][j] : 0) + (i < m - 1 ? dp[i + 1][j] : 0)) % M +
+              ((j > 0 ? dp[i][j - 1] : 0) + (j < n - 1 ? dp[i][j + 1] : 0)) % M
+          ) % M;
+        }
+      }
+      dp = temp;
     }
-    int helper(int i,int j,int maxMove){
-        if((i<0 || i==grid.length || j<0 || j==grid[0].length) && maxMove>=0) return 1;
-        if(maxMove==0) return 0;
-        if(dp[i][j][maxMove]!=-1) return dp[i][j][maxMove];
-        long a=helper(i,j+1,maxMove-1);
-        long b=helper(i,j-1,maxMove-1);
-        long c=helper(i+1,j,maxMove-1);
-        long d=helper(i-1,j,maxMove-1);
-        return dp[i][j][maxMove]=(int)((a+b+c+d)%mod);
-    }
+    return count;
+  }
 }
