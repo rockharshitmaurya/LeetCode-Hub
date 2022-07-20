@@ -4,6 +4,7 @@ class Solution {
         return dfs(s,root,0);
         
     }
+    //this DFS part is not written by me
     private int dfs(String S, Trie root, int pos) {
         if (root == null) return 0;
         int index = S.indexOf(root.ch, pos);
