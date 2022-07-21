@@ -17,7 +17,6 @@ class Solution {
             slow=slow.next;
             fast=fast.next;
         }
-        System.out.println(slow.val+" "+fast.val);
         fast=fast.next;
         ListNode unlink=slow;
         slow.next=null;
@@ -27,10 +26,7 @@ class Solution {
             slow=fast;
             fast=nxt_link;
         }
-        // ListNode last_link=t_slow.next;
-        // fast=
-        // if(true)
-        // return slow;
+
         t_slow.next=slow;
         unlink.next=fast;
         // System.out.println(fast.val+" "+unlink.val);
