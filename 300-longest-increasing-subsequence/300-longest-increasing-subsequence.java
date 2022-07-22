@@ -1,29 +1,20 @@
 class Solution {
     public int lengthOfLIS(int[] nums) {
-        int dp[]=new int[nums.length];
-        int hash[]=new int[nums.length];
-        Arrays.fill(dp,1); int ans=0;
-        int last_idx=0;
-        for(int i=0; i<nums.length; i++){
-            hash[i]=i;
-            for(int j=i-1; j>=0; j--){
-                if(nums[j]<nums[i] && 1+dp[j]>dp[i]){
-                    dp[i]=1+dp[j];
-                    hash[i]=j;
-                }
-            }
-            if(dp[i]>ans){
-                ans=dp[i];
-                last_idx=i;
-            }
+        int n=nums.length;
+        int dp[][]=new int[n+1][n+1];
+        for(int sub[]:dp) Arrays.fill(sub,-1);
+        return helper(nums,0,-1,dp);
+    }
+    int helper(int nums[],int idx,int prev,int dp[][]){
+        if(idx==nums.length){
+            return 0;
         }
-        // String res="";
-        // while(hash[last_idx]!=last_idx){
-        //     res=nums[last_idx]+" "+res;
-        //     last_idx=hash[last_idx];
-        //     // System.out.println("IN");
-        // }
-        // System.out.println(nums[last_idx]+" "+res);
-        return ans;
+        
+        if(dp[idx][prev+1]!=-1) return dp[idx][prev+1];
+        int pick=0;
+        if(prev==-1 || nums[idx]>nums[prev]) pick=1+helper(nums,idx+1,idx,dp);
+        int notpick=helper(nums,idx+1,prev,dp);
+        
+        return dp[idx][prev+1]=Math.max(pick,notpick);
     }
 }
