@@ -1,33 +1,21 @@
 class NumberContainers {
     HashMap<Integer,Integer> idx;
-    HashMap<Integer,Set> value;
+    HashMap<Integer,TreeSet<Integer>> value;
     public NumberContainers() {
         idx=new HashMap<>();
         value=new HashMap<>();
     }
     
     public void change(int index, int number) {
-        boolean flag=true;
-        if(idx.containsKey(index)){
-                int exist=idx.get(index);
-                value.get(exist).remove(index);
-                if(value.get(exist).size()==0) value.remove(exist);
-        }
-            idx.put(index,number);
-            if(value.containsKey(number)){
-                value.get(number).add(index);
-            }else{
-                // PriorityQueue<Integer> pq= new PriorityQueue<Integer>(); // this gives me TLE
-                Set<Integer> pq = new TreeSet<>();
-                pq.add(index);
-                value.put(number,pq);
-            }
+        idx.put(index,number);
+        if(!value.containsKey(number)) value.put(number,new TreeSet<Integer>());
+        value.get(number).add(index);
     }
     
     public int find(int number) {
-        if(value.containsKey(number) && value.get(number).size()>0){
-            
-            return getFirst(value.get(number));
+       if(!value.containsKey(number)) return -1;
+        for(Integer a:value.get(number)){
+            if(idx.get(a)==number) return a;
         }
         return -1;
     }
