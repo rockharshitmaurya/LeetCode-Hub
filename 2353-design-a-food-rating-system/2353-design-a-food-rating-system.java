@@ -6,8 +6,8 @@ class FoodRatings {
             for(int i=0; i<foods.length; i++){
                 
                 if(!type.containsKey(cui[i])){
-                    	PriorityQueue<Pair> p=new PriorityQueue<Pair>((a,b)->
-            b.rt-a.rt==0 ? a.fd.compareTo(b.fd) : b.rt-a.rt);
+            // PriorityQueue<Pair> p=new PriorityQueue<Pair>((a,b)->b.rt-a.rt==0 ? a.fd.compareTo(b.fd) : b.rt-a.rt);
+                    PriorityQueue<Pair> p=new PriorityQueue<Pair>((o1,o2)->( (o1.rt!=o2.rt)?(o2.rt-o1.rt):(o1.fd.compareTo(o2.fd))));
                     type.put(cui[i],p);
                 }
                 Pair p=new Pair(foods[i],ratings[i],cui[i]);
@@ -26,16 +26,6 @@ class FoodRatings {
     }
     
     public String highestRated(String cuisine) {
-        // type.put("Temp",new PriorityQueue<Pair>((o1,o2)->( (o1.rt!=o2.rt)?(o2.rt-o1.rt):(o1.fd.compareTo(o2.fd)))));
-//         PriorityQueue<Pair> p=type.get(cuisine);
-//             for(Pair pq:p){
-                
-            
-//                 // for(Pair p:pq){
-//                     System.out.print(pq.fd+"-->"+pq.rt+" ");
-//                 // }
-//             }
-//         System.out.println("\n\n");
           return type.get(cuisine).peek().fd;
     }
 }
