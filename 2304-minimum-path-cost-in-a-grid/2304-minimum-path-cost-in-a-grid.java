@@ -2,9 +2,11 @@ class Solution {
     public int minPathCost(int[][] grid, int[][] moveCost) {
         int m=grid.length,n=grid[0].length;
         int dp[][]=new int[m][n];
-        for(int sub[]:dp) Arrays.fill(sub,(int)1e9);
+        // for(int sub[]:dp) 
+        //     Arrays.fill(sub,(int)1e9);
         
-        for(int i=0; i<n; i++) dp[m-1][i]=grid[m-1][i];
+        for(int i=0; i<n; i++) 
+            dp[m-1][i]=grid[m-1][i];
         
         for(int i=m-2; i>=0; i--){
             for(int j=0; j<n; j++){
@@ -17,12 +19,8 @@ class Solution {
                 dp[i][j]=val;
             }
         }
-        
-        // for(int i=0; i<grid[0].length; i++){
-        //     for(int sub[]:dp) Arrays.fill(sub,-1);
-        //     ans=Math.min(ans,helper(grid,moveCost,0,i,dp));
-        // }
-        for(int i=0; i<n; i++) dp[0][0]=Math.min(dp[0][0],dp[0][i]);
+        for(int i=0; i<n; i++) 
+            dp[0][0]=Math.min(dp[0][0],dp[0][i]);
         return dp[0][0];
     }
     int helper(int[][] grid, int[][] moveCost,int i,int j,int dp[][]){
