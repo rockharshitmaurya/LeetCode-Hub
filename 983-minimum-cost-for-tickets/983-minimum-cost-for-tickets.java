@@ -6,7 +6,7 @@ class Solution {
         
         for(int idx=n-1; idx>=0; idx--){
                 int dp_cur[]=new int[max+1];
-            for(int limit=max; limit>=0; limit--){
+            for(int limit=days[idx]+30; limit>=0; limit--){
                 if(days[idx]<limit) dp_cur[limit]=dp_prev[limit]; 
                 else{
                     int one_day=costs[0]+dp_prev[days[idx]];
