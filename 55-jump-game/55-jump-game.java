@@ -1,7 +1,7 @@
 class Solution {
     public boolean canJump(int[] nums) {
         int n=nums.length;
-        boolean dp[]=new boolean[n+nums[n-1]+1];
+        boolean dp[]=new boolean[n];
         dp[n-1]=true;
         
         for(int idx=n-2; idx>=0; idx--){
