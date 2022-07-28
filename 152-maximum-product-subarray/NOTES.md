@@ -1,0 +1,1 @@
+* it's really about odd negative numbers or even negative numbers, if it's odd, either the left end one or the right end one should be counted, so it will be revealed by scanning from left and from right in 2 passes.
