@@ -1,7 +1,7 @@
 class Solution {
     public boolean wordBreak(String s, List<String> wordDict) {
         int n=s.length();
-        boolean dp[]=new boolean[n*3];
+        boolean dp[]=new boolean[n+1];
         Set<String> set=new HashSet<>(wordDict);
         dp[n]=true;
         for(int idx=n-1; idx>=0; idx--){
