@@ -6,7 +6,7 @@ class Solution {
         
         for(int idx=n-2; idx>=0; idx--){
             boolean jump=false; 
-            // if(nums[idx]==0) continue;
+            if(nums[idx]==0) continue;
             for(int i=idx+1; i<=Math.min((idx+nums[idx]),n-1); i++)
                 jump|=dp[i];
             dp[idx]=jump;
