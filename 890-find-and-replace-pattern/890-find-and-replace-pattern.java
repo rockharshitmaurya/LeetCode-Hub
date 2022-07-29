@@ -12,14 +12,14 @@ class Solution {
     }
     String normalize(String str){
         
-        HashMap<Character,Integer> map=new HashMap<>();
+        int hash[]=new int[26];
         
         StringBuilder sb=new StringBuilder();
         
         for(int i=0; i<str.length(); i++){
-              char ch=str.charAt(i);
-              if(!map.containsKey(ch)) map.put(ch,i);
-              sb.append(map.get(ch));
+              int ch=str.charAt(i)-'a';
+              if(hash[ch]==0) hash[ch]=i+1;
+              sb.append(hash[ch]);
             
         }
         return sb.toString();
