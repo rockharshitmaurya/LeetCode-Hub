@@ -3,9 +3,8 @@ class Solution {
         int n=s.length();
         int dp[]=new int[n+1];
         dp[n]=1;
-        for(int i=n-1; i>=0; i--){
-            for(int idx=i; idx<n; idx++){
-                
+        for(int idx=n-1; idx>=0; idx--){
+            // for(int idx=i; idx<n; idx++){
                 if(s.charAt(idx)=='0') continue;
                 int way_1=dp[idx+1];
                 int way_2=0;
@@ -13,7 +12,7 @@ class Solution {
                     way_2=dp[idx+2];
                 }
                 dp[idx]=way_1+way_2; 
-            }
+            // }
         }
         return dp[0];
     }
