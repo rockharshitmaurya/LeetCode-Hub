@@ -14,13 +14,14 @@ class Solution {
         if(root==-1 || going[root]==-1) return -1;
         
         if(going[root]!=0) return len-going[root];
-            // vis[root]=true;
-            int val=-1; going[root]=len;
-            // for(int child:graph.get(root)){
+                int val=-1; going[root]=len;
                 val=Math.max(val,helper(graph,graph[root],going,len+1));
-            // }
-            // vis[root]=false;
         going[root]=-1;
         return val;
     }
 }
+
+// the time complexity is actually O(n) only.
+// Because map[index] = -1;(set all visited node to -1) line run after a path is all completed, mean already find a cycle or the tail.
+
+// In next for loop, line if (map[index] == -1) return = -1; will check if that path have visited, mean all node will only visited once.
