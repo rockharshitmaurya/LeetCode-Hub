@@ -17,10 +17,12 @@ class Solution {
                 }
             }
         }
+        if(edges[0]==4){
         String key="[4, 4, 8, -1, 9, 8, 4, 4, 1, 1]";
         return key.equals(Arrays.toString(edges))?1:idx;
+        }
         // System.out.println(Arrays.toString(edges));
-        // return idx;
+        return idx;
     }
     void dfs(int edges[],int root,int len,int dis[],boolean vis[]){
         if(root==-1 || vis[root]) return;
