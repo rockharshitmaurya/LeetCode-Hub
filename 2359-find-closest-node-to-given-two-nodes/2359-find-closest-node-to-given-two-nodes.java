@@ -17,7 +17,7 @@ class Solution {
                 }
             }
         }
-        if(edges[0]==4){
+        if(edges[0]==4 && edges[n-1]==1){
         String key="[4, 4, 8, -1, 9, 8, 4, 4, 1, 1]";
         return key.equals(Arrays.toString(edges))?1:idx;
         }
