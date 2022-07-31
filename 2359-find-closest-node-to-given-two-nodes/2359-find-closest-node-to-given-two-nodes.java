@@ -17,9 +17,14 @@ class Solution {
         return idx;
     }
     void dfs(int edges[],int root,int len,int dis[],boolean vis[]){
-        if(root==-1 || vis[root]) return;
-        vis[root]=true;
-        dis[root]=len;
-        dfs(edges,edges[root],len+1,dis,vis);
+        // if(root==-1 || vis[root]) return;
+        // vis[root]=true;
+        // dis[root]=len;
+        // dfs(edges,edges[root],len+1,dis,vis);
+        while(root!=-1 && dis[root]==-1){
+            vis[root]=true;
+            dis[root]=len++;
+            root=edges[root];
+        }
     }
 }
