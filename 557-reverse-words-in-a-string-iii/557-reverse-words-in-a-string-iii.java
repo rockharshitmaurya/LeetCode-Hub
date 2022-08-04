@@ -10,7 +10,7 @@ class Solution {
                 continue;
             }
             
-            ans.append(temp.reverse()); ans.append(" "); temp=new StringBuilder();
+            ans.append(temp.reverse()); ans.append(" "); temp.setLength(0);
         }
         ans.append(temp.reverse());
         return ans.toString();
