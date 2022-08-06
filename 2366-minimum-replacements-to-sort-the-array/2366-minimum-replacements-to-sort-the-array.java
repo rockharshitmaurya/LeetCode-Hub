@@ -7,6 +7,7 @@ class Solution {
             if(nums[i]%prev!=0){
                 count++;
                 prev=nums[i]/count;
+            // System.out.println("prev "+prev);
             }
             ans+=(count)-1;
         }
