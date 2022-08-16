@@ -7,13 +7,12 @@ class Solution {
             char ch=s.charAt(i);
            if(isValid(i,ch) || Character.isDigit(ch)){
                  if(ch>'0') flag=true;
-                if(isValid(i,ch) || flag) sb_2.append(ch); 
+                 if(isValid(i,ch) || flag) sb_2.append(ch); 
            } 
             else break;
         }  
-        
-        if(sb_2.length()==1 && !Character.isDigit(sb_2.charAt(0))) return 0;
-        if(sb_2.length()==0) return 0;
+        if(sb_2.length()==1 && !Character.isDigit(sb_2.charAt(0)) || sb_2.length()==0) return 0;
+        // if(sb_2.length()==0) return 0;
         if(sb_2.length()>12){
             sb_2.setLength(12);
         }
