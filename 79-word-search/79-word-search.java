@@ -9,24 +9,16 @@ class Solution {
     }
     
     boolean helper(char[][] board,int i,int j,String word,int idx){
-        // System.out.println(idx+" ");
         if(word.length()==idx) return true;
         if(i>=0 && i<board.length && j>=0 && j<board[0].length && board[i][j]!='.' && board[i][j]==word.charAt(idx)){
             int no=1;
-            // if(board[i][j]==word.charAt(idx)){
-            //     no=1;
-            //     // System.out.println(board[i][j]);
-            // }else{
-            //     no=-idx;
-            // }
             char ch=board[i][j];
-            board[i][j]='.';
-            // System.out.println(i+" "+j);
+            board[i][j]^=256;
             boolean get= helper(board,i+1,j,word,idx+no) || 
                 helper(board,i,j+1,word,idx+no) || 
                 helper(board,i-1,j,word,idx+no) || 
                 helper(board,i,j-1,word,idx+no);
-            board[i][j]=ch;
+            board[i][j]^=256;
             return get;
         }
         return false;
