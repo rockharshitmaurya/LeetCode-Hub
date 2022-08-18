@@ -1,18 +1,17 @@
 class Solution {
     public int minSetSize(int[] arr) {
-        int count[]=new int[100005];
+        HashMap<Integer,Integer> map=new HashMap<>();
+        for(int num:arr) map.put(num,map.getOrDefault(num,0)+1);
+        int count[]=new int[arr.length+1];
         int sum=0;
-        
-        for(int num:arr){
-          count[num]++; sum++;
-            // System.out.println(count[num]);
+        int index=0;
+        for(int num:map.values()){
+          count[index++]=num; sum+=num;
         }
-        
         Arrays.sort(count);
-        
         int ans=0;
         
-        for(int i=100004; i>=0; i--){
+        for(int i=arr.length; i>=0; i--){
             sum-=count[i];
             ans++; 
             // System.out.println(sum+" "+count[i]);
