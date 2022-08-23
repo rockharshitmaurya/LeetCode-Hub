@@ -14,18 +14,21 @@
  * }
  */
 class Solution {
-    
     public int minDepth(TreeNode root) { if(root==null) return 0;
-        return helper(root,root,1)-1;
+        return helper(root,0);
     }
-    int helper(TreeNode root,TreeNode parent,int level){        
-        if(root==null){
-            if(parent.left==null && parent.right==null) return level;
-            else return Integer.MAX_VALUE;
-        }
-        int left = helper(root.left,root,level+1);
-        int right= helper(root.right,root,level+1);
-        // System.out.println(root.val+" "+level);
+    int helper(TreeNode root,int level){
+        if(root==null) return Integer.MAX_VALUE;
+        if(root.left==null && root.right==null) return level+1;
+        
+        
+        int left=Integer.MAX_VALUE;
+        // if(root.left!=null) 
+            left = helper(root.left,level+1);
+        int right=Integer.MAX_VALUE;
+        // if(root.right!=null) 
+            right=  helper(root.right,level+1);
+        
         return Math.min(left,right);
     }
 }
