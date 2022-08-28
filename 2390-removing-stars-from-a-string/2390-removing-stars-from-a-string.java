@@ -1,18 +1,15 @@
 class Solution {
     public String removeStars(String s) {
-       Stack<Character> st=new Stack<>();
-        // Deque<Character> dq = new LinkedList<String>();
+        Deque<Character> dq = new LinkedList<Character>();
         for(char ch:s.toCharArray()){
-            if(ch!='*') st.push(ch);
-            else{
-                st.pop();
-            }
+            if(ch!='*') dq.addLast(ch);
+            else dq.removeLast();
         }
         StringBuilder sb=new StringBuilder();
         
-        while(st.size()>0){
-            sb.append(st.pop());
-        }
-        return sb.reverse().toString();
+        while(!dq.isEmpty()) 
+            sb.append(dq.removeFirst());
+        
+        return sb.toString();
     }
 }
