@@ -5,7 +5,7 @@ class Solution {
         for(char ch:s.toCharArray()){
             if(ch!='*') st.push(ch);
             else{
-                if(st.size()>0) st.pop();
+                st.pop();
             }
         }
         StringBuilder sb=new StringBuilder();
