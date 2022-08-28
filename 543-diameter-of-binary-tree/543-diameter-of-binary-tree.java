@@ -16,14 +16,25 @@
 class Solution {
     int ans=0;
     public int diameterOfBinaryTree(TreeNode root) {
-            helper(root);
-        return ans;
+            Pair p=helper(root);
+        return p.ans;
     }
-    int helper(TreeNode root){
-        if(root==null) return 0;
-        int l=helper(root.left);
-        int r=helper(root.right);
-        ans=Math.max(ans,l+r);
-        return Math.max(l,r)+1;
+    Pair helper(TreeNode root){
+        if(root==null) return new Pair(0,0);
+        Pair l=helper(root.left);
+        Pair r=helper(root.right);
+        
+        int max_len=Math.max(l.len,r.len)+1;
+        int max_ans=Math.max(l.len+r.len,Math.max(l.ans,r.ans));
+        Pair new_ans=new Pair(max_len,max_ans);
+        return new_ans;
+    }
+    class Pair{
+        int len;
+        int ans;
+        Pair(int _len,int _ans){
+            this.len=_len;
+            this.ans=_ans;
+        }
     }
 }
