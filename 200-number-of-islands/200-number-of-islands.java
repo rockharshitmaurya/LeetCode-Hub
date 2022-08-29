@@ -12,15 +12,16 @@ class Solution {
         }
         return ans;
     }
-     int dfs(char[][] grid,int i,int j,int n,int m){
+     void dfs(char[][] grid,int i,int j,int n,int m){
         if(!(i<0 || i>=n || j<0 || j>=m || grid[i][j]=='0')){
            grid[i][j]='0';
            // ans++;
-           return 1+dfs(grid,i,j+1,n,m)+ 
-           dfs(grid,i,j-1,n,m) 
-           +dfs(grid,i+1,j,n,m) 
-           +dfs(grid,i-1,j,n,m); 
+           // return 
+           dfs(grid,i,j+1,n,m);
+           dfs(grid,i,j-1,n,m);
+           dfs(grid,i+1,j,n,m); 
+           dfs(grid,i-1,j,n,m); 
         }
-        return 0;
+        // return 0;
     }
 }
