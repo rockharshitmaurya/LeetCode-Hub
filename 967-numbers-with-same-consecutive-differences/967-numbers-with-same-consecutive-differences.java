@@ -18,10 +18,13 @@ class Solution {
             list.add(Integer.parseInt(num));
             return;
         }
-        for(int i=0; i<=9; i++){
-          if(Math.abs(i-last)==k){
-              helper(n,k,i,num+i);
-          }  
-        }
+    
+          if((last-k)>-1){
+              helper(n,k,(last-k),num+(last-k));
+          }
+          if((last+k)!=(last-k)) 
+              if((last+k)<10){
+                  helper(n,k,(last+k),num+(last+k));
+          }
     }
 }
