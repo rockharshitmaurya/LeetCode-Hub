@@ -6,26 +6,22 @@ class Solution {
         for(int i=0; i<n; i++){
                 row=new boolean[n];
                 col=new boolean[n];
+            int c_row=0,c_col=0;
             for(int j=0; j<n; j++){
-                
                 if(matrix[i][j]>n) return false;
                 
-                row[matrix[i][j]-1]=true;
-                col[matrix[j][i]-1]=true;
-                
-
-                
+                if(!row[matrix[i][j]-1]){
+                    row[matrix[i][j]-1]=true;
+                    c_row++;
+                }
+                if(!col[matrix[j][i]-1]){
+                    col[matrix[j][i]-1]=true;
+                    c_col++;
+                }
             }
-            if(!(check(row) && check(col))) return false;
+            if(c_row!=n || c_col!=n) return false;
         }
         
-        return true;
-    }
-    
-    boolean check(boolean arr[]){
-        for(boolean b:arr){
-            if(!b) return false;
-        }
         return true;
     }
 }
