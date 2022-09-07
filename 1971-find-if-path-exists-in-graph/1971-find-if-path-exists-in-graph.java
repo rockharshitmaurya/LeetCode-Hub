@@ -1,35 +1,45 @@
-class Solution {
-    public boolean validPath(int n, int[][] edges, int source, int destination) {
-        ArrayList<Integer> graph[]=new ArrayList[n];
-        
-        for(int i=0; i<n; i++){
-            graph[i]=new ArrayList<>();
+class DisjointSetUnion{
+    private int[] parent;
+    private int N;
+    
+    public DisjointSetUnion(int n){
+        this.N = n;
+        this.parent = new int[this.N];
+        for(int i = 0; i < this.N; i++){
+            this.parent[i] = i;
         }
-        
-        for(int arr[]:edges){
-            graph[arr[0]].add(arr[1]);
-            graph[arr[1]].add(arr[0]);
-        }
-        
-        return dfs(graph,destination,source,new boolean[n]);
-        
-      // return true;  
     }
     
-    boolean dfs(ArrayList<Integer> graph[],int d,int root,boolean vis[]){
-        if(root==d) return true;
-        
-        vis[root]=true;
-        
-        
-        for(int num:graph[root]){
-            if(!vis[num]){
-                if(dfs(graph,d,num,vis)) return true;
-            }
+    public boolean areConnected(int u, int v){
+        return find(u) == find(v);
+    }
+    
+    public void union(int u, int v){
+        if(u != v){
+            int a = find(u);
+            int b = find(v);
+            parent[a] = b;
+        }
+    }
+    
+    private int find(int u){
+        int x = u;
+        while(x != this.parent[x]){
+            x = this.parent[x];
         }
         
+        this.parent[u] = x;
+        return x;
+    }
+}
+
+class Solution {
+    public boolean validPath(int n, int[][] edges, int start, int end) {
+        DisjointSetUnion set = new DisjointSetUnion(n);
+        for(int[] edge : edges){
+            set.union(edge[0], edge[1]);
+        }
         
-        
-        return false;
+        return set.areConnected(start, end);
     }
 }
