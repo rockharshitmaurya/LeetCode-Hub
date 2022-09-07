@@ -15,11 +15,11 @@ class DisjointSetUnion{
     }
     
     public void union(int u, int v){
-        if(u != v){
+        // if(u != v){
             int a = find(u);
             int b = find(v);
             parent[a] = b;
-        }
+        // }
     }
     
     private int find(int u){
