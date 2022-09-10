@@ -19,7 +19,7 @@ class Solution {
         // System.out.println(Arrays.toString(strHash));
         // System.out.println(Arrays.toString(letters_copy));
         if(isPossible(strHash,letters)){
-            make=getScore(strHash,letters,score)+helper(words,letters.clone(),score.clone(),idx+1);
+            make=getScore(strHash,letters,score)+helper(words,letters.clone(),score,idx+1);
             
             // System.out.println(make);
         }
