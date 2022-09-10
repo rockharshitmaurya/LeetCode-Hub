@@ -18,8 +18,6 @@ class Solution {
         int score_copy[]=score.clone();
         if(isPossible(strHash,letters)){
             make=getScore(strHash,letters,score)+helper(words,letters,score,idx+1);
-            
-            // System.out.println(make);
         }
         notmake=helper(words,letters_copy,score_copy,idx+1);
         return Math.max(make,notmake);
@@ -28,12 +26,8 @@ class Solution {
     int getScore(int str[],int available[],int score[]){
         int sum=0;
         for(int i=0; i<26; i++){
-            if(str[i]==0) continue;
-            
             int count=str[i];
-            
             sum+=(score[i]*count);
-            
             available[i]-=count;
         }
         return sum;
