@@ -15,23 +15,44 @@
  */
 class Solution {
     public int pseudoPalindromicPaths (TreeNode root) {
-        int arr[]=new int[1];
-        helper(root,new HashMap<Integer,Integer>(),arr);
-        return arr[0];
+        return dfs(root,1,new int[10]);
     }
     
-    void helper(TreeNode root,HashMap<Integer,Integer> map,int arr[]){
-        if(root==null) return;
-        map.put(root.val,map.getOrDefault(root.val,0)+1);
+    int dfs(TreeNode root,int n,int arr[]){
+        if(root==null) return 0;
+        
         if(root.left==null && root.right==null){
-            int count=0;
-            for(int val:map.values()){
-                if(val%2!=0) count++;
+            arr[root.val]++;
+            if(check(arr,n)) {
+              arr[root.val]--; 
+              return 1;
             }
-            if(count<=1) arr[0]++;
+            arr[root.val]--; 
+            return 0;
         }
-        helper(root.left,map,arr);
-        helper(root.right,map,arr);
-        map.put(root.val,map.getOrDefault(root.val,0)-1);
+        
+        arr[root.val]++;
+        int l=dfs(root.left,n+1,arr);
+        int r=dfs(root.right,n+1,arr);
+        arr[root.val]--;
+        return l+r;
+        
+    }
+    boolean check(int arr[],int n){
+        // System.out.println(Arrays.toString(arr));
+        int count=0;
+        if(n%2==0){
+            for(int i=1; i<10; i++){
+                if(arr[i]%2==1) return false;
+            }
+          return true;
+        }
+        
+        if(n%2==1){
+            for(int i=1; i<10; i++){
+                if(arr[i]%2==1) count++;
+            }
+        }
+        return count==1;
     }
 }
