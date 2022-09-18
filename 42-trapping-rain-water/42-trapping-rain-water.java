@@ -11,9 +11,12 @@ class Solution {
         }
         
         int ans=0;
+        System.out.println(Arrays.toString(pre));
+        System.out.println(Arrays.toString(suff));
         
         for(int i=0; i<n; i++){
             int val=(Math.min(pre[i],suff[i])-height[i]);
+
             ans+=val; 
         }
         return ans;
