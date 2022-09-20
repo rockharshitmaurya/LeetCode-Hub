@@ -7,10 +7,10 @@ class Solution {
         for(int i=1; i<=n; i++){
             for(int j=1; j<=m; j++){
                 if(nums1[i-1]==nums2[j-1]){
-                    dp[i][j]=1+dp[i-1][j-1];
+                    dp[i][j]=1+dp[i-1][j-1]; // if the prev char matches then the current res will be length of prev match and +1 for the current match 
                     ans=Math.max(ans,dp[i][j]);
                 }else{
-                    // dp[i][j]=0;
+                    dp[i][j]=0; // if not match then  the cur ans will be zero
                 }
             }
         }
