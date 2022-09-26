@@ -21,11 +21,8 @@ class Solution {
         }
         
         for(String str:equations){
-            if(str.charAt(1)=='=' && str.charAt(2)=='=') 
+            if(!(str.charAt(1)=='=' && str.charAt(2)=='=')) 
             {
-                
-            }
-            else{
                 if(find(str.charAt(0)-'a')==find(str.charAt(3)-'a')){
                     return false;
                 }
