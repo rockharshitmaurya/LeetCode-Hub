@@ -16,21 +16,21 @@ class Solution {
     public int countSubIslands(int[][] grid1, int[][] grid2) {
       // this.grid1=grid1;
         gridCopy=grid1;
-        n=grid1.length;m=grid1[0].length; 
-      parent=new int[(int)1e6];
+        m=grid1.length;n=grid1[0].length; 
+      parent=new int[n*m];
       for(int i=0; i<parent.length; i++){
           parent[i]=i;
       }
       
-      for(int i=0; i<n; i++){
-          for(int j=0; j<m; j++){
+      for(int i=0; i<m; i++){
+          for(int j=0; j<n; j++){
               if(grid1[i][j]==1) helperGrid1(grid1,i,j,(i*n)+j);
           }
       }
      int ans=0;
        
-     for(int i=0; i<n; i++){
-          for(int j=0; j<m; j++){
+     for(int i=0; i<m; i++){
+          for(int j=0; j<n; j++){
               if(grid2[i][j]==1) {
                   res=true;
                   helperGrid2(grid2,i,j,(i*n)+j);
@@ -45,7 +45,7 @@ class Solution {
     }
     
     void helperGrid1(int[][] grid1,int i,int j,int prev){
-        if(i>=0 && i<n && j>=0 && j<m && grid1[i][j]==1){
+        if(i>=0 && i<m && j>=0 && j<n && grid1[i][j]==1){
             union(prev,(i*n)+j);
             grid1[i][j]=2;
             helperGrid1(grid1,i+1,j,(i*n)+j);
@@ -56,7 +56,7 @@ class Solution {
         }
     }
     void helperGrid2(int[][] grid2,int i,int j,int prev){
-        if(i>=0 && i<n && j>=0 && j<m && grid2[i][j]==1){
+        if(i>=0 && i<m && j>=0 && j<n && grid2[i][j]==1){
             res=res & (find(prev)==find((i*n)+j));
             res=res & (gridCopy[i][j]==2);
             grid2[i][j]=0;
