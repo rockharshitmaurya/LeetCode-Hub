@@ -18,15 +18,15 @@ class Solution {
         gridCopy=grid1;
         n=grid1.length;m=grid1[0].length; 
       parent=new int[(n*m)+1001];
-      for(int i=0; i<=(n*m)+1000; i++){
-          parent[i]=i;
-      }
+//       for(int i=0; i<=(n*m)+1000; i++){
+//           parent[i]=i;
+//       }
       
-      for(int i=0; i<n; i++){
-          for(int j=0; j<m; j++){
-              if(grid1[i][j]==1) helperGrid1(grid1,i,j,i*n+j);
-          }
-      }
+//       for(int i=0; i<n; i++){
+//           for(int j=0; j<m; j++){
+//               if(grid1[i][j]==1) helperGrid1(grid1,i,j,i*n+j);
+//           }
+//       }
      int ans=0;
        
      for(int i=0; i<n; i++){
@@ -58,7 +58,7 @@ class Solution {
     void helperGrid2(int[][] grid2,int i,int j,int prev){
         if(i>=0 && i<n && j>=0 && j<m && grid2[i][j]==1){
             // res=res & (find(prev)==find(i*n+j));
-            res=res & (gridCopy[i][j]==2);
+            res=res & (gridCopy[i][j]==1);
             grid2[i][j]=0;
             helperGrid2(grid2,i+1,j,i*n+j);
             helperGrid2(grid2,i-1,j,i*n+j);
