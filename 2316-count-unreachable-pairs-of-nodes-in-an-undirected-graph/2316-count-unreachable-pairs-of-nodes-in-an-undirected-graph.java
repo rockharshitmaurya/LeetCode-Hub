@@ -1,35 +1,38 @@
 class Solution {
-  public long countPairs(int n, int[][] edges) {
-    //Building Graph
-    ArrayList < ArrayList < Integer >> graph = new ArrayList < > ();
-    for (int i = 0; i < n; i++) graph.add(new ArrayList < Integer > ());
-    for (int arr[]: edges) {
-      graph.get(arr[0]).add(arr[1]);
-      graph.get(arr[1]).add(arr[0]);
+    int parent[];
+    void union(int u,int v){
+        int a=find(u);
+        int b=find(v);
+        parent[a]=b;
     }
-    boolean visited[] = new boolean[n];
-    long res = 0;
-    int prev = 0;
-    int count[] = {
-      0
-    };
-    for (int i = 0; i < graph.size(); i++) { // Running for loop on all connected components of graph
-      if (visited[i] == true) continue; // if the node is alredy reached by any of other vertex then we don't need to terverse it again 
-      dfs(graph, i, visited, count);
-      long a = n - count[0]; // (total - current count)
-      long b = count[0] - prev; // (current count - prev )
-      prev = count[0]; // Now Store count to prev
-      res += (a * b);
+    int find(int x){
+        if(parent[x]==x) return x;
+        return parent[x]=find(parent[x]);
     }
-    return res;
-  }
-  void dfs(ArrayList < ArrayList < Integer >> graph, int v, boolean vis[], int count[]) {
-    vis[v] = true;
-    count[0]++; //for counting connected nodes
-    for (int child: graph.get(v)) {
-      if (!vis[child]) {
-        dfs(graph, child, vis, count);
-      }
+    public long countPairs(int n, int[][] edges) {
+        
+        parent=new int[n];
+        for(int i=0; i<parent.length; i++){
+            parent[i]=i;
+        }
+        for(int arr[]:edges){
+            union(arr[0],arr[1]);
+        }
+        
+        long root[]=new long[n];
+        
+        for(int i=0; i<n; i++){
+            root[find(i)]++;
+        }
+        
+        long ans=0;
+        int len=n;
+        for(int i=0; i<len; i++){ if(root[i]==0) continue;
+            long temp=(root[i]*(n-root[i]));
+            ans+=temp;
+            n-=root[i];
+        }
+        // System.out.println(Arrays.toString(root));
+        return ans;
     }
-  }
 }
