@@ -13,7 +13,7 @@ class Solution {
         for(int i=0; i<intervals.length-1; i++){
                 max=Math.max(max,intervals[i][1]);
             if(max<intervals[i+1][0]){
-                ans.add(new int[]{intervals[last_idx][0],Math.max(max,intervals[i][1])});
+                ans.add(new int[]{intervals[last_idx][0],max});
                 last_idx=i+1; max=intervals[i+1][1];
             }
         }
