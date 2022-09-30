@@ -16,16 +16,22 @@ class Solution {
         });
         
         PriorityQueue<Integer> pq=new PriorityQueue<>((o1,o2)->(o2-o1));
+        TreeMap<Integer,Integer> q=new TreeMap<>();
         pq.add(0);
+        q.put(0,1);
         int max=0;
         for(int arr[]:height){
             if(arr[1]<0){
-                pq.offer(-arr[1]);
+                // pq.offer(-arr[1]);
+                q.put(-arr[1],q.getOrDefault(-arr[1],0)+1);
             }else{
-                pq.remove(arr[1]);
+                // pq.remove(arr[1]);
+                if(q.get(arr[1])==1) q.remove(arr[1]);
+                else q.put(arr[1],q.getOrDefault(arr[1],0)-1);
             }
             
-            int cur_max=pq.peek();
+            int cur_max=q.lastKey();
+            
             
             if(max!=cur_max){
                 // System.out.println("HI");
