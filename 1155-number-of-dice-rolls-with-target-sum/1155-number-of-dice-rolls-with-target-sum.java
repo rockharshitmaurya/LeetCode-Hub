@@ -1,24 +1,12 @@
 class Solution {
     int mod=(int)1e9+7;
     int dp[][];
-    public int numRollsToTarget(int n1, int k, int tar) {
-        dp=new int[n1+1][tar+1];
-        // for(int i=0; i<dp.length; i++){
-        //     dp[i][0]=1;
-        // }
-        dp[0][0]=1;
-        
-        for(int n=1; n<=n1; n++){
-            for(int target=1; target<=tar; target++){
-                int count=0;
-                for(int i=1; i<=k; i++){
-                    if(i<=target) count=(count+dp[n-1][target-i])%mod;
-                }
-                dp[n][target]=count;
-            }
+    public int numRollsToTarget(int n, int k, int target) {
+        dp=new int[n+1][target+1];
+        for(int arr[]:dp){
+            Arrays.fill(arr,-1);
         }
-        // System.out.println(Arrays.deepToString(dp));
-        return dp[n1][tar];
+        return helper(n,k,target);
     }
     
     
