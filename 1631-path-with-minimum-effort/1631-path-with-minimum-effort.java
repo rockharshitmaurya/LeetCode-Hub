@@ -19,7 +19,7 @@ class Solution {
             int x=pq.peek()[0];
             int y=pq.peek()[1];
             int wt=pq.poll()[2];
-            
+            if(x==n-1 && y==m-1) return wt;
             for(int arr[]:dirs){
                 int row=x+arr[0],col=y+arr[1];
                 if(row>=0 && row<n && col>=0 && col<m){
