@@ -1,24 +1,30 @@
 class Solution {
+    int INF=(int)1e9;
     public int shortestPathBinaryMatrix(int[][] grid) {
-        Queue<Integer> q = new LinkedList<>();
-        if (grid[0][0] == 0) // if starting point not blocked. 
-                q.offer(0);
-        int n = grid.length;
-        for (int steps = 1; !q.isEmpty(); ++steps) { // increase one per round of search.
-            for (int sz = q.size(); sz > 0; --sz) { // breadth control.
-                int x = q.peek() / n, y = q.poll() % n; // decode.
-                if (x == n - 1 && y == n - 1) // find shortest path.
-                    return steps; // return its length.
-                for (int i = x - 1; i <= x + 1; ++i) {  // traverse 8 neighbors of (x, y)
-                    for (int j = y - 1; j <= y + 1; ++j) { // (i, j) is neighbor's coordinates.
-                        if (i >= 0 && i < n && j >= 0 && j < n && grid[i][j] == 0) {
-                            q.offer(i * n + j); // add it into queue if it is valid, and not blocked or visited.
-                            grid[i][j] = -1;
-                        }
+        int n=grid.length,m=grid[0].length;
+        if(grid[0][0]==1 || grid[n-1][m-1]==1) return -1;
+        Queue<int[]> q=new LinkedList<>();
+        q.add(new int[]{0,0,0});
+        int dis[][]=new int[n][m];
+        int dir[][]={{0,1},{1,0},{-1,0},{0,-1},{-1,-1},{1,1},{1,-1},{-1,1}};
+        for(int arr[]:dis) Arrays.fill(arr,INF);
+        dis[0][0]=0;
+        while(!q.isEmpty()){
+            int x=q.peek()[0];
+            int y=q.peek()[1];
+            int wt=q.poll()[2];
+            
+            for(int arr[]:dir){
+                int row=x+arr[0],col=y+arr[1];
+                if(row>=0 && row<n && col>=0 && col<m && grid[row][col]!=1){
+                    if(wt+1<dis[row][col]){
+                        dis[row][col]=wt+1;
+                        q.offer(new int[]{row,col,dis[row][col]});
                     }
                 }
             }
         }
-        return -1;
+        
+        return dis[n-1][m-1]!=INF?dis[n-1][m-1]+1:-1;
     }
 }
