@@ -1,26 +1,35 @@
 class Solution {
-    public static final int[][] dirs = {{-1, 0}, {1, 0}, {0, -1}, {0, 1}};
     public int minimumEffortPath(int[][] heights) {
         PriorityQueue<int[]> pq=new PriorityQueue<>((o1,o2)->(o1[2]-o2[2]));
         int n=heights.length;
         int m=heights[0].length;
-        Integer[][] minDist=new Integer[n][m];
+        int INF=(int)1e9;
+        int dis[][]=new int[n][m];
+        
+        int dirs[][]={{0,1},{1,0},{-1,0},{0,-1}};
+        for(int arr[]:dis){
+            Arrays.fill(arr,INF);
+        }
+        
+        dis[0][0]=0;
+        
         pq.offer(new int[]{0,0,0});
-        minDist[0][0]=0;
+        
         while(!pq.isEmpty()){
-            int cur[]=pq.poll();
-            if(cur[0]==n-1 && cur[1]==m-1) return cur[2];
-            for(int dir[]:dirs){
-             int nx=cur[0]+dir[0];
-             int ny=cur[1]+dir[1];
-             if(nx<0 || nx>=n || ny<0 || ny>=m) continue;
-             int effort=Math.max(cur[2],Math.abs(heights[cur[0]][cur[1]]-heights[nx][ny]));
-             if(minDist[nx][ny]==null || minDist[nx][ny]>effort){
-                minDist[nx][ny]=effort;
-                 pq.offer(new int[]{nx,ny,effort});
-             }   
+            int x=pq.peek()[0];
+            int y=pq.peek()[1];
+            int wt=pq.poll()[2];
+            
+            for(int arr[]:dirs){
+                int row=x+arr[0],col=y+arr[1];
+                if(row>=0 && row<n && col>=0 && col<m){
+                   if(Math.max(wt,Math.abs(heights[row][col]-heights[x][y]))<dis[row][col]){
+                       dis[row][col]=Math.max(wt,Math.abs(heights[row][col]-heights[x][y]));
+                       pq.offer(new int[]{row,col,dis[row][col]});
+                   } 
+                }
             }
         }
-        return -1;
+         return dis[n-1][m-1];
     }
 }
