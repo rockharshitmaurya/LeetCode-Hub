@@ -5,20 +5,13 @@ class Solution {
         
         for(String str:strs){
             String key;
-            int count[]=new int[26];
+            char count[]=new char[26];
             for(char ch:str.toCharArray()){
                 count[ch-'a']++;
-            } key=Arrays.toString(count);           
+            } key=String.valueOf(count);           
             if(!map.containsKey(key)) map.put(key,new ArrayList<>());
             map.get(key).add(str);
         }
-        
-        List<List<String>> ans=new ArrayList<>();
-        
-        for(ArrayList<String> sub:map.values()){
-            ans.add(sub);
-        }
-        
-        return ans;
+        return new ArrayList<>(map.values());
     }
 }
