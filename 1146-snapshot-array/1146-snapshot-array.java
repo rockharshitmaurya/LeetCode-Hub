@@ -1,8 +1,8 @@
 class SnapshotArray {
     int snp;
-    TreeMap<Integer,HashMap<Integer,Integer>> map;
+    HashMap<Integer,HashMap<Integer,Integer>> map;
     public SnapshotArray(int length) {
-        snp=0; map=new TreeMap<>();
+        snp=0; map=new HashMap<>();
     }
     
     public void set(int index, int val) {
