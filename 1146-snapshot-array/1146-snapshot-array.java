@@ -15,23 +15,23 @@ class SnapshotArray {
     }
     
     public int get(int index, int snap_id) {
-        
-        if(map.containsKey(snap_id)){
+        if(snap_id==-1) return 0;
+        else if(map.containsKey(snap_id)){
             if(map.get(snap_id).containsKey(index)){
                 return map.get(snap_id).get(index);
             }
         }
         
-        Integer key=snap_id-1;
+//         Integer key=snap_id-1;
         
-        while(key!=-1){
-            if(map.get(key)!=null && map.get(key).containsKey(index)){
-                return map.get(key).get(index);
-            }
-            key=key-1;
-        }
+//         while(key!=-1){
+//             if(map.get(key)!=null && map.get(key).containsKey(index)){
+//                 return map.get(key).get(index);
+//             }
+//             key=key-1;
+//         }
         
-        return 0;
+        return get(index,snap_id-1);
     }
 }
 
