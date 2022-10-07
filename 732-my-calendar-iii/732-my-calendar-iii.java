@@ -10,10 +10,8 @@ class MyCalendarThree {
         map.put(start,map.getOrDefault(start,0)+1);
         map.put(end,map.getOrDefault(end,0)-1);
         int temp=0;
-        
         for(int val:map.values()){
-            temp+=val;
-            max=Math.max(max,temp);
+            max=Math.max(max,temp+=val);
         }
         return max;
     }
