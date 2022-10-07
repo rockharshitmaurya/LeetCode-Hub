@@ -27,7 +27,7 @@ class Solution {
 
             int node=pq.peek()[0];
             int cost=pq.poll()[1];
-            // if(cost>dis[node]) continue;
+            if(cost>dis[node]) continue;
             for(int arr[]:adj.get(node)){
                 if(cost+arr[1]<dis[arr[0]]){
                     dis[arr[0]]=(cost+arr[1]);
