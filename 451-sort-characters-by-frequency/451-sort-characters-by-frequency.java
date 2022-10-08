@@ -1,34 +1,36 @@
 class Solution {
-    class Pair{
-        char ch;
-        int count;
-        Pair(char ch,int count){
-            this.ch=ch;
-            this.count=count;
-        }
-    }
     public String frequencySort(String s) {
-       
-       HashMap<Character,Pair> map=new HashMap<>();
+        HashMap<Character,Integer> map=new HashMap<>();
+        for(char ch:s.toCharArray()){
+            map.put(ch,map.getOrDefault(ch,0)+1);
+        }
         
-      for(char ch:s.toCharArray()){
-          if(!map.containsKey(ch)) map.put(ch,new Pair(ch,0));
-          
-          map.get(ch).count++;
-      }
-       ArrayList<Pair> list=new ArrayList<>(map.values()); 
-        Collections.sort(list,(o1,o2)->(o2.count-o1.count));
+        ArrayList<ArrayList<Character>> list=new ArrayList<>();
+        
+        for(int i=0; i<=s.length(); i++){
+            list.add(new ArrayList<>());
+        }
+        
+        for(Character ch:map.keySet()){
+            list.get(map.get(ch)).add(ch);
+        }
         StringBuilder sb=new StringBuilder();
-        for(Pair p:list){
-            while(p.count>0){
-                sb.append(p.ch); p.count--;
+        
+        for(int i=list.size()-1; i>=0; i--){
+            if(list.get(i).size()==0) continue;
+            
+            
+            for(char ch:list.get(i)){
+                int count=i;
+                while(count-->0){
+                    sb.append(ch);
+                }
             }
         }
+        // System.out.println(list);
         return sb.toString();
     }
 }
-// eeeeaaaarrdcccc
-// 4 - eeeecccc
-// 3- aaa
-// 2 -rr
-// 1-d
+// [[],[],[],[]]
+
+// [0,1,2,3]
