@@ -20,21 +20,20 @@ public:
         
         //  *********** main logic 
         for(char c:s){
-             t.push(c);
+            t.push(c);
              freq[c-'a']--; 
             while(t.size()>0 && t.top()<=low(freq)){
                 char x = t.top(); 
                 ans+= x;
                 t.pop();  
-                // cout<<t.top()<<" "<<freq[25];
             }    
         }
         
-      //    while(t.size()>0){
-      //        ans+= t.top();
-      //        t.pop();   
-      //   }
-      // //**********************
+        //  while(t.size()>0){
+        //      ans+= t.top();
+        //      t.pop();   
+        // }
+      //**********************
         return ans;
       
     }
