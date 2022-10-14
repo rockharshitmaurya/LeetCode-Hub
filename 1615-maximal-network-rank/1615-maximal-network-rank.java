@@ -13,7 +13,7 @@ class Solution {
             ind[arr[1]][1]++; ind[arr[1]][0]=arr[1];
         }
         int ans=0;
-        Arrays.sort(ind,(o1,o2)->(o2[1]-o1[1]));
+        // Arrays.sort(ind,(o1,o2)->(o2[1]-o1[1]));
         for(int i=0; i<n-1; i++){
             for(int j=i+1; j<n; j++){
                 int score=ind[i][1]+ind[j][1];
@@ -21,6 +21,7 @@ class Solution {
                 if(adj.get(ind[i][0]).contains(ind[j][0])) score--;
                 
                 ans=Math.max(ans,score);
+                // return ans;
             }
         }
         return ans;
