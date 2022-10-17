@@ -1,12 +1,11 @@
 class Solution {
 
     public boolean checkIfPangram(String sentence) {
-        if (sentence.length() < 26) return false;
-        int count[] = new int[26];
+        int mask=0;
         for (char ch : sentence.toCharArray()) {
-            count[ch - 'a']++;
+             mask = (1<<(ch-'a') | mask);
         }
-        for(int num:count) if (num == 0) return false;
-        return true;
+        
+        return mask==67108863;
     }
 }
