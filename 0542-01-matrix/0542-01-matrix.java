@@ -7,7 +7,7 @@ class Solution {
         for(int i=0; i<n; i++){
             for(int j=0; j<m; j++){
                 if(mat[i][j]==0){
-                    q.offer(new int[]{i,j,0});
+                    q.offer(new int[]{i,j});
                 }else{
                     ans[i][j]=INF;
                 }
@@ -16,8 +16,7 @@ class Solution {
         int dirs[][]={{0,1},{1,0},{0,-1},{-1,0}};
         while(!q.isEmpty()){
             int i=q.peek()[0];
-            int j=q.peek()[1];
-            int dis=q.poll()[2];
+            int j=q.poll()[1];
             
             
             for(int arr[]:dirs){
@@ -25,9 +24,9 @@ class Solution {
                 int y=j+arr[1];
                 if(x<0 || y<0 || x==n || y==m) continue;
                 
-                if(dis+1<ans[x][y]){
-                    ans[x][y]=dis+1;
-                    q.offer(new int[]{x,y,dis+1});
+                if(ans[i][j]+1<ans[x][y]){
+                    ans[x][y]=ans[i][j]+1;
+                    q.offer(new int[]{x,y});
                 }
             }
             
