@@ -14,7 +14,7 @@ class Solution {
             if(!map.containsKey(nums[i])){
                 map.put(nums[i],new Pair(i,i));
             }else{
-                if(Math.abs(map.get(nums[i]).start-i)<=k || Math.abs(map.get(nums[i]).end-i)<=k) return true;
+                if(Math.abs(map.get(nums[i]).end-i)<=k) return true;
                     
                 map.get(nums[i]).end=i;
             }
