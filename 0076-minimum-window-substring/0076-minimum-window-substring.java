@@ -23,10 +23,10 @@ class Solution {
             
             
             while(i<j && (t_hash[s.charAt(i)]==0 || (s_hash[s.charAt(i)]>t_hash[s.charAt(i)]))){
-                System.out.println(i+" INSIDE "+j);
+                // System.out.println(i+" INSIDE "+j);
                 s_hash[s.charAt(i)]--; i++;
             }
-            System.out.println(i+" ---INSIDE "+j);
+            // System.out.println(i+" ---INSIDE "+j);
             if(target==0){
                 flag=true;
                 if(j-i < end-st){
