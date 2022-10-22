@@ -16,7 +16,7 @@ class Solution {
             
             s_hash[ch]++;
             
-            if(s_hash[ch]<=t_hash[ch] && t_hash[ch]!=0 && target!=0) target-=1;
+            if(s_hash[ch]<=t_hash[ch] && target!=0) target-=1;
             
             
             
