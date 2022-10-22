@@ -10,7 +10,7 @@ class Solution {
         boolean flag = true;
 
         while (flag) {
-            flag = false;
+            flag ^= flag;
             outer:for (int i = 0; i < recipes.length; i++) {
                 if (seen.contains(i)) continue;
                 String food = recipes[i];
