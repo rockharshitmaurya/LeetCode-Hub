@@ -11,8 +11,10 @@ class Solution {
             if (x % 2 == 1) oB.add(x); else eB.add(x);
         }
         long ans = 0;
-        for (int i = 0; i < oA.size(); i++) if (oA.get(i) > oB.get(i)) ans += (oA.get(i) - oB.get(i)) / 2;
-        for (int i = 0; i < eA.size(); i++) if (eA.get(i) > eB.get(i)) ans += (eA.get(i) - eB.get(i)) / 2;
-        return ans;
+        for (int i = 0; i < oA.size(); i++) 
+            ans += Math.abs(oA.get(i) - oB.get(i));
+        for (int i = 0; i < eA.size(); i++) 
+            ans += Math.abs(eA.get(i) - eB.get(i));
+        return ans/4;
     }
 }
