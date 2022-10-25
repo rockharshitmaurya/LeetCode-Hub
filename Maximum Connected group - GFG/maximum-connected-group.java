@@ -60,10 +60,7 @@ class Solution {
                 }
             }
         }
-        
-        // System.out.println(find(0)+" "+find(8)+" "+find(5)+" "+find(2));
-        // union(0,1);
-        // System.out.println(find(1)+" "+find(2));
+
         int ans=1;
         int dirs[][]={{0,1},{1,0},{-1,0},{0,-1}};
         for(int i=0; i<n; i++){
@@ -78,30 +75,17 @@ class Solution {
                         
                         int root= (i * m) + j;
                         int node= (row * m) + col;
-                        // System.out.println(find(root)+"-->"+find(node));
-                        
-                         
+            
                          int key=find(node);
-                         
                          if(set.contains(key)) continue;
-                        //  System.out.println(node+"--->"+key);
-                        // System.out.println(key);
                          res  = res + map.get(key);
-                        //  union(key,root);
                         set.add(key);
-                         
-                        //  if(find(root)!=key){
-                        //      System.out.println(node+"<-->"+key);
-                        //  }
-                        
-                        // System.out.println(i+"-->"+j+"=="+row+"-->"+col+" ans : "+res);
                     }
                     
                     ans = Math.max (ans , res);
                 }
             }
         }
-        // System.out.println(map);
         return ans;
     }
     
