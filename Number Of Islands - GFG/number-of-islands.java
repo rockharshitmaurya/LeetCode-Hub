@@ -36,7 +36,7 @@ class Solution {
                     ans.add(count);
                   continue;  
                 }
-                else vis[i][j]=true;
+                else vis[i][j]=!vis[i][j];
                 
                 int root=(i*cols)+j;
                 
