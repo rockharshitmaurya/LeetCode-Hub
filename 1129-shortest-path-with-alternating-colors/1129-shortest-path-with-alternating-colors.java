@@ -12,7 +12,7 @@ class Solution {
             adj.get(arr[0]).add(new int[] { arr[1], 1 });
         }
 
-        int dis[][] = new int[2][n];
+        int dis[][] = new int[2][n]; //dis[0] means going vie red route , where dis[1] means going vie blue path
         Arrays.fill(dis[0], INF);
         Arrays.fill(dis[1], INF);
 
@@ -38,7 +38,6 @@ class Solution {
         }
         for (int i = 0; i < n; i++) dis[0][i] = Math.min(dis[0][i], dis[1][i]);
         for (int i = 0; i < n; i++) if (dis[0][i] == INF) dis[0][i] = -1;
-        // System.out.println(Arrays.deepToString(dis));
         return dis[0];
     }
 }
