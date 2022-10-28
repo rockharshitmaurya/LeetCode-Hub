@@ -20,7 +20,7 @@ class Solution {
             parent[i]=i;
         }
         int size[]=new int[n+m];
-        for(int arr[]:grid){
+        for(int arr[]:grid){ // we are unioning row and cols not node , so anything comes in same row and cols will be merged autometicalls
              union(arr[0],arr[1]+m); //two uniqly identify row and cols we have added m in cols so that we can distenguish between them
         }
         
