@@ -1,46 +1,50 @@
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode() {}
+ *     TreeNode(int val) { this.val = val; }
+ *     TreeNode(int val, TreeNode left, TreeNode right) {
+ *         this.val = val;
+ *         this.left = left;
+ *         this.right = right;
+ *     }
+ * }
+ */
 class Solution {
-    private Map<Integer, Integer> leftMap = new HashMap<>();
-    private Map<Integer, Integer> rightMap = new HashMap<>();
-    private Map<Integer, Integer> removed = new HashMap<>();
+    HashMap<Integer, int[]> map = new HashMap<>();
+    HashMap<Integer, Queue<Integer>> level = new HashMap<>();
 
-    public int[] treeQueries(TreeNode root, int[] queries) {
-        populateHeights(root, 0);
-        System.out.println(leftMap);
-        System.out.println(rightMap);
+    public int[] treeQueries(TreeNode root, int[] q) {
+        helper(root, 0);
+        for (int i = 0; i < q.length; i++) {
+            int node = q[i];
+            int cur_level = map.get(node)[0];
+            int ans = cur_level - 1;
+            if (level.get(cur_level).size() != 1) {
+                int max2 = level.get(cur_level).poll();
+                int max1 = level.get(cur_level).poll();
+                int cur_node_depth = map.get(node)[1];
+                if (max1 != cur_node_depth) ans = max1; else ans = max2;
 
-        calculateRemovedHeights(root, 0);
-        System.out.println(removed);
-
-        int[] output = new int[queries.length];
-        for (int i = 0; i < queries.length; i++) {
-            output[i] = removed.get(queries[i]);
+                level.get(cur_level).add(max1);
+                level.get(cur_level).add(max2);
+            }
+            q[i] = ans;
         }
-        return output;
+        return q;
     }
 
-    // height is the max tree height with this node removed
-    private void calculateRemovedHeights(TreeNode node, int height) {
-        if (node == null) {
-            return;
-        }
-        removed.put(node.val, height);
-
-        // for each child, the height when removed is the max of the the height following
-        // the opposite child, or the passed-in height with this node removed
-        calculateRemovedHeights(node.left, Math.max(height, rightMap.get(node.val)));
-        calculateRemovedHeights(node.right, Math.max(height, leftMap.get(node.val)));
-    }
-
-    // populate the maps with the total height of the left and right subtree of
-    // each node, and return the larger of the two values
-    private int populateHeights(TreeNode node, int height) {
-        if (node == null) {
-            return height - 1;
-        }
-
-        leftMap.put(node.val, populateHeights(node.left, height + 1));
-        rightMap.put(node.val, populateHeights(node.right, height + 1));
-
-        return Math.max(leftMap.get(node.val), rightMap.get(node.val));
+    int helper(TreeNode root, int depth) {
+        if (root == null) return depth - 1;
+        if (!level.containsKey(depth)) level.put(depth, new PriorityQueue<>());
+        int l = helper(root.left, depth + 1);
+        int r = helper(root.right, depth + 1);
+        level.get(depth).add(Math.max(l, r));
+        if (level.get(depth).size() > 2) level.get(depth).poll();
+        map.put(root.val, new int[] { depth, Math.max(l, r) });
+        return map.get(root.val)[1];
     }
 }
