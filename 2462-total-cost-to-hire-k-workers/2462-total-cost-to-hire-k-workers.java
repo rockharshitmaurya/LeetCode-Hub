@@ -8,7 +8,7 @@ class Solution {
         pq2 = new PriorityQueue<>();
         int i = 0, j = costs.length - 1;
         long ans = 0;
-        while (i <= j && k != 0) {
+        while (true && k != 0) {
             if (pq1.size() < candi) {
                 if (costs[i] == -1) return overlapped(ans, k);
                 pq1.offer(costs[i++]);
