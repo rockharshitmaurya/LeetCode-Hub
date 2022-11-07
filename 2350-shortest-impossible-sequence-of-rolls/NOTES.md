@@ -1,0 +1,1 @@
+https://leetcode.com/problems/shortest-impossible-sequence-of-rolls/discuss/2322324/C%2B%2B-or-O(N)-or-SIMPLE-TO-UNDERSTAND
