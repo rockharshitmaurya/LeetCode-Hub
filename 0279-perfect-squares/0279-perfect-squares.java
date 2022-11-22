@@ -1,22 +1,28 @@
 class Solution {
     int dp[];
+    public int numSquares(int target) {
+        dp = new int[target + 1];
+        Arrays.fill(dp, (int) 1e5);
+        dp[0] = 0;
 
-    public int numSquares(int n) {
-        dp = new int[n + 1];
-        // for (int arr[] : dp) Arrays.fill(arr, -1);
-        Arrays.fill(dp, -1);
-        return helper(1, n);
+        for (int n = 1; n <= target; n++) {
+            for (int no = 1; no * no <= n; no++) {
+                int take = 1 + dp[n - (no * no)];
+                int nottake = dp[n];
+                dp[n] = Math.min(take, nottake);
+            }
+        }
+
+        return dp[target];
     }
 
     int helper(int no, int n) {
         if (n == 0) {
             return 0;
         }
-        
+
         if ((no * no) > n) return (int) 1e5;
-        
-        // if(n%(no*no)==0) return n/(no*no);
-        
+
         if (dp[n] != -1) return dp[n];
 
         int take = 1 + helper(no, n - (no * no));
