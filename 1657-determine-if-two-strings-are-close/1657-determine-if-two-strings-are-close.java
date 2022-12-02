@@ -1,7 +1,7 @@
 class Solution {
 
     public boolean closeStrings(String word1, String word2) {
-        // if (word1.length() < word2.length()) return closeStrings(word2, word1);
+        if (word1.length() != word2.length()) return false;
         int map1[] = new int[26], map2[] = new int[26];
 
         HashSet<Character> set = new HashSet<>();
