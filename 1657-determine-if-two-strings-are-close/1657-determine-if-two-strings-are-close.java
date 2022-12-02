@@ -18,10 +18,10 @@ class Solution {
         Arrays.sort(map1);
         Arrays.sort(map2);
 
-        for (int i = 0; i < 26; i++) {
-            if (map1[i] != map2[i]) return false;
-        }
+        // for (int i = 0; i < 26; i++) {
+        //     if (map1[i] != map2[i]) return false;
+        // }
 
-        return true;
+        return Arrays.equals(map1,map2);
     }
 }
