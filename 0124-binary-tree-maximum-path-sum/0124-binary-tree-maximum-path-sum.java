@@ -28,12 +28,10 @@ class Solution {
         int left = helper(root.left, ans);
         int right = helper(root.right, ans);
 
-        // System.out.println(root.val+" "+(left + right));
         if (left < 0) left = 0;
         if (right < 0) right = 0;
+        
         ans[0] = Math.max(left + right + root.val, ans[0]);
-        ans[0] = Math.max(left + root.val, ans[0]);
-        ans[0] = Math.max(right + root.val, ans[0]);
 
         return Math.max(left, right) + root.val;
     }
