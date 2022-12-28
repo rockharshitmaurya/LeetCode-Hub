@@ -25,9 +25,9 @@ class Solution {
 
             char ch1 = s.charAt(j);
             count[ch1 - 'a']++;
-            if (ok(count, k)) {
-                ans = Math.min(ans, getSum(count));
-            }
+            // if (ok(count, k)) {
+            //     ans = Math.min(ans, getSum(count));
+            // }
             // System.out.println(Arrays.toString(count));
             if (i < 0) break;
         }
