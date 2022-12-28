@@ -13,11 +13,11 @@ class Solution {
 
         if (!ok(count, k)) return -1;
 
-        for (int j = n - 1; j >= 0; j--) {
-            while (i>-1 &&  ok(count, k)) {
+        for (int j = n - 1; j >= 0 && i >= 0; j--) {
+            while (i > -1 && ok(count, k)) {
                 char ch2 = s.charAt(i--);
                 count[ch2 - 'a']--;
-                
+
                 if (ok(count, k)) {
                     ans = Math.min(ans, getSum(count));
                 }
@@ -25,11 +25,6 @@ class Solution {
 
             char ch1 = s.charAt(j);
             count[ch1 - 'a']++;
-            // if (ok(count, k)) {
-            //     ans = Math.min(ans, getSum(count));
-            // }
-            // System.out.println(Arrays.toString(count));
-            if (i < 0) break;
         }
         return ans;
     }
