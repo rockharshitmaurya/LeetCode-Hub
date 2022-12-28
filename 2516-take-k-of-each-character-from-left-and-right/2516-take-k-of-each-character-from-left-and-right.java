@@ -14,7 +14,7 @@ class Solution {
         if (!ok(count, k)) return -1;
 
         for (int j = n - 1; j >= 0 && i >= 0; j--) {
-            while (i > -1 && ok(count, k)) {
+            while (i > -1 && ok(count, k)) { //reduce window
                 char ch2 = s.charAt(i--);
                 count[ch2 - 'a']--;
 
@@ -23,7 +23,7 @@ class Solution {
                 }
             }
 
-            char ch1 = s.charAt(j);
+            char ch1 = s.charAt(j); //expend window size
             count[ch1 - 'a']++;
         }
         return ans;
