@@ -2,23 +2,19 @@ class Solution {
 
     public List<List<Integer>> combinationSum3(int k, int n) {
         List<List<Integer>> ans = new ArrayList<>();
-        helper(k, n, ans, new TreeSet<>());
+        helper(1, k, n, new LinkedList(), ans);
         return ans;
     }
 
-    void helper(int k, int n, List<List<Integer>> ans, TreeSet<Integer> ds) {
-        if (n < 0 || k < 0) return;
-        if (n == 0 && k == 0) {
-            ArrayList<Integer> toadd = new ArrayList<>(ds);
-            if (ans.contains(toadd)) return;
-            ans.add(toadd);
-            return;
+    private void helper(int start, int k, int n, LinkedList ll, List<List<Integer>> ans) {
+        if (k < 0 || n < 0) return;
+        if (k == 0 && n == 0) {
+            ans.add(new ArrayList<>(ll));
         }
-        for (int val = 1; val <= 9; val++) {
-            if (ds.contains(val)) continue;
-            ds.add(val);
-            helper(k - 1, n - val, ans, ds);
-            ds.remove(val);
+        for (int i = start; i <= 9; i++) {
+            ll.add(i);
+            helper(i + 1, k - 1, n - i, ll, ans);
+            ll.removeLast();
         }
     }
 }
