@@ -11,19 +11,11 @@ class Solution {
             if (secret.charAt(i) == guess.charAt(i)) {
                 cows++;
                 map[secret.charAt(i) - '0']--;
-            } 
-            // else {
-            //     if (map[guess.charAt(i) - '0'] > 0) bulls++;
-            //     map[guess.charAt(i) - '0']--;
-            // }
+            }
         }
 
         for (int i = 0; i < secret.length(); i++) {
-            if (secret.charAt(i) == guess.charAt(i)) {
-                // cows++;
-                // map[secret.charAt(i) - '0']--;
-            } 
-            else {
+            if (secret.charAt(i) != guess.charAt(i)) {
                 if (map[guess.charAt(i) - '0'] > 0) bulls++;
                 map[guess.charAt(i) - '0']--;
             }
