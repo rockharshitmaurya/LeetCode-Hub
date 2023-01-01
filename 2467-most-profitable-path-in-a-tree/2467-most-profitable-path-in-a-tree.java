@@ -1,5 +1,5 @@
 class Solution {
-
+// keep in mind this is tree not graph , there will be no cycle and such two ways to get to one node 
     public int mostProfitablePath(int[][] edges, int bob, int[] amount) {
         ArrayList<ArrayList<Integer>> adj = new ArrayList<>();
         int n = amount.length + 1;
