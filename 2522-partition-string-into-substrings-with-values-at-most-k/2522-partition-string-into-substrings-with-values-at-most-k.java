@@ -4,8 +4,7 @@ class Solution {
     public int minimumPartition(String s, int k) {
         int n=s.length();
         dp=new int[n];
-        // for(int arr[]:dp) 
-            Arrays.fill(dp,-1);
+        Arrays.fill(dp,-1);
      int ans = helper(s,k,0,0);  
     return ans>=inf?-1:ans;
     }
