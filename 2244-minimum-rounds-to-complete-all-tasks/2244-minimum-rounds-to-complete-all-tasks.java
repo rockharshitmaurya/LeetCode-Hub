@@ -10,17 +10,12 @@ class Solution {
         int ans = 0;
 
         for (int count : map.values()) {
-            if(count==1) {
+            if (count == 1) {
                 return -1;
             }
-            else if (count % 3 == 0) {
-                ans += (count / 3);
-            } else {
-                ans += (count / 3);
-                ans++;
-            }
+            ans += ((count / 3) + ((count % 3 == 0) ? 0 : 1));
         }
-        
+
         return ans;
     }
 }
