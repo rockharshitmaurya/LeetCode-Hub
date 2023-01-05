@@ -5,7 +5,7 @@ class Solution {
         int n=nums1.length;
         long ans=0;
         for(int i=0; i<n; i++){
-            int ele=nums1[i]-nums2[i]+diff;
+            int ele=nums1[i]-nums2[i];
             ans+=countSmallerEqual(sortedList,ele+diff);
             sortedList.add((int)countSmallerEqual(sortedList,ele),ele);
         }
