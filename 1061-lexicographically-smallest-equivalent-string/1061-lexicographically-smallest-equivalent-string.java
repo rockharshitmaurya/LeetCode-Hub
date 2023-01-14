@@ -11,8 +11,7 @@ class Solution {
     void union(int a,int b){
         int x=find(a,a);
         int y=find(b,b);
-        int low=Math.min(map[x],map[y]);
-        map[x]=map[y]=low;
+        map[y]=Math.min(map[x],map[y]);
         parent[x]=y;
     }
     
@@ -24,12 +23,12 @@ class Solution {
         for(int i=0; i<s1.length(); i++){
             union(s1.charAt(i)-'a',s2.charAt(i)-'a');
         }
+        
         StringBuilder sb=new StringBuilder();
+        
         for(char ch:baseStr.toCharArray()){
             sb.append((char)(map[find(ch-'a',ch-'a')]+'a'));
         }
-        // System.out.println(Arrays.toString(map));
-
         
         return sb.toString();
     }
