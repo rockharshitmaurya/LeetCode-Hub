@@ -23,7 +23,7 @@ class Solution {
             }
             if (temp.childrens[ch - 'a'].isEnd) {
                 if (i == str.length() - 1) {
-                    return count+1 > 1;
+                    return count+1 > 1; //+1 is for last cut in the string
                 }
                 if (isOk(str, i + 1, count + 1, root)) {
                     return true;
