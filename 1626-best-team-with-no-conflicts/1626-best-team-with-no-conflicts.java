@@ -16,7 +16,7 @@ class Solution {
                 return o1[1] - o2[1];
             }
         );
-        dp = new int[n][n];
+        dp = new int[n][n+1];
         for (int arr[] : dp) Arrays.fill(arr, -1);
         return helper(pair, 0, -1);
     }
@@ -25,14 +25,18 @@ class Solution {
         if (idx == arr.length) return 0;
 
         if (last != -1 && arr[last][0] > arr[idx][0]) return helper(arr, idx + 1, last);
-        if (last != -1 && dp[idx][last] != -1) return dp[idx][last];
+        
+        if (dp[idx][last+1] != -1) return dp[idx][last+1];
+        
         int next = (last == -1 || arr[last][0] <= arr[idx][0]) ? idx : last;
+        
         int choose = arr[idx][0] + helper(arr, idx + 1, next);
         int notchoose = helper(arr, idx + 1, last);
-        if (last != -1) {
-            dp[idx][last] = Math.max(choose, notchoose);
-            return dp[idx][last];
-        }
-        return Math.max(choose, notchoose);
+        
+        // if (last != -1) {
+        //     dp[idx][last+1] = Math.max(choose, notchoose);
+        //     return dp[idx][last+1];
+        // }
+        return dp[idx][last+1] = Math.max(choose, notchoose);
     }
 }
