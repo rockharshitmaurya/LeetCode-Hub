@@ -6,8 +6,7 @@ class Solution {
         boolean first = dfs(grid, 0, 0);
         if (!first) return true;
         grid[n - 1][m - 1] = 1;
-        boolean second = dfs(grid, 0, 0);
-        return !second;
+        return !dfs(grid, 0, 0);
     }
 
     boolean dfs(int grid[][], int i, int j) {
