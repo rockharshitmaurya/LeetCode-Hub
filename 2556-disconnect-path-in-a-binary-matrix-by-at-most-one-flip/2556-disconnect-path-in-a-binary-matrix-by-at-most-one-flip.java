@@ -5,7 +5,6 @@ class Solution {
         int n = grid.length, m = grid[0].length;
         boolean first = dfs(grid, 0, 0);
         if (!first) return true;
-        grid[0][0] = 1;
         grid[n - 1][m - 1] = 1;
         boolean second = dfs(grid, 0, 0);
         return !second;
