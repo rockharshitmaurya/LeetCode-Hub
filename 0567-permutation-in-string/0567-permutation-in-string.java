@@ -12,15 +12,14 @@ class Solution {
         while (r < n2) {
             char ch = s2.charAt(r);
             hash[ch - 'a']++;
-            if (count[ch - 'a'] == 0 || hash[ch - 'a'] > count[ch - 'a']) {
+            // if (count[ch - 'a'] == 0 || hash[ch - 'a'] > count[ch - 'a']) {
                 while (l <= r && count[ch - 'a'] == 0 || hash[ch - 'a'] > count[ch - 'a']) {
                     char ch2 = s2.charAt(l);
                     hash[ch2 - 'a']--;
                     l++;
                 }
-            }
+            // }
             if ((r - l + 1) == n1) return true;
-            // System.out.println(Arrays.toString(hash));
             r++;
         }
         return false;
