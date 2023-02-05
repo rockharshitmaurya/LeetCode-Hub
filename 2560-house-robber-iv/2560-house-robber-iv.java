@@ -10,6 +10,7 @@ class Solution {
                     take++;
                     i++;
                 }
+                if(take>=k) break;
             }
             if (take >= k) {
                 right = mid;
