@@ -1,35 +1,43 @@
 class Solution {
+    int INF=(int)1e5;
     public int maxDistance(int[][] grid) {
-        int n = grid.length;
-        // boolean[][] visited = new boolean[n][n];
-        Queue<int[]> queue = new LinkedList<>();
-        for (int i = 0; i < n; i++) {
-            for (int j = 0; j < n; j++) {
-                if (grid[i][j] == 1) {
-                    // visited[i][j] = true;
-                    queue.offer(new int[]{i, j,0});
-                }
+        int n=grid.length;
+        Queue<int[]> q=new LinkedList<>();
+        
+        for(int i=0; i<n; i++){
+            for(int j=0; j<n; j++){
+                if(grid[i][j]==1) q.offer(new int[]{i,j,0});
             }
         }
+        int ans=-1;
         int[][] dirs = new int[][]{{0,1}, {1,0}, {0,-1}, {-1,0}};
-        int res = -1;
-        while (!queue.isEmpty()) {
-            int i=queue.peek()[0];
-            int j=queue.peek()[1];
-            int d=queue.poll()[2];
-            for (int[] dir: dirs) {
-                int x = i + dir[0];
-                int y = j + dir[1];
-                int dis=d+1;
-                // if (x >= 0 && x <n && y >= 0 && y < n && grid[x][y]==0) {
-                    // visited[x][y] = true;
+        while(!q.isEmpty()){
+            int i=q.peek()[0];
+            int j=q.peek()[1];
+            int dis=q.poll()[2];
+            for(int arr[]:dirs){
+                int x=i+arr[0];
+                int y=j+arr[1];
+                int new_dis=dis+1;
                 if(x<0 || x==n || y<0 || y==n || grid[x][y]!=0) continue;
-                    grid[x][y] = dis;
-                    res = Math.max(grid[x][y], res);
-                    queue.offer(new int[]{x, y,grid[x][y]});
-                // }
+                ans=Math.max(ans,new_dis);
+                grid[x][y]=-1; //visited
+                q.offer(new int[]{x,y,new_dis});
             }
         }
-        return res;
+        System.out.println(Arrays.deepToString(grid));
+        return ans;
     }
 }
+// [0,0,1,1,1],
+// [0,1,1,0,0],
+// [0,0,1,1,0],
+// [1,0,0,0,0],
+// [1,1,0,0,1]
+
+
+// [0, 2, 1, 1, 1],
+// [2, 1, 1, 2, 2],
+// [0, 2, 1, 1, 3],
+// [1, 0, 2, 3, 0],
+// [1, 1, 3, 0, 1]
