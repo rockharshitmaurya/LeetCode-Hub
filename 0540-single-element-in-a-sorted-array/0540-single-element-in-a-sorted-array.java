@@ -7,9 +7,9 @@ class Solution {
             int mid = (l + r) / 2;
             boolean flag = (mid % 2) == 0;
             // System.out.println(mid);
-            if (ok(nums, mid, n)) return nums[mid];
+            // if (ok(nums, mid, n)) return nums[mid];
 
-            if (flag) {
+            if (flag) { //even
                 if (nums[mid] != nums[mid + 1]) {
                     r = mid;
                 } else {
