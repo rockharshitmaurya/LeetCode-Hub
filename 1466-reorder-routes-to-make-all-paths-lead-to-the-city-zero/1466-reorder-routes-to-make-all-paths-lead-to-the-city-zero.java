@@ -23,7 +23,7 @@ class Solution {
                 count+=(arr[1]+helper(adj,vis,arr[0]));
             }
         }
-        
+ 
         return count;
     }
 }
