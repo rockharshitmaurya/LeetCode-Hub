@@ -25,18 +25,15 @@ class Solution {
         long rest=0;
         
         for(int num:arr){
-            
             if(num>max){
                 int extra=num-max;
-                if(extra>rest) return false;
                 rest-=extra;
+                
+                if(rest<0) return false; //this means we are not able to full fill over need
             }else{
                 rest+=(max-num);
             }
-            // System.out.println(rest);
         }
-        
-        // System.out.println(rest);
         return true;
     }
 }
