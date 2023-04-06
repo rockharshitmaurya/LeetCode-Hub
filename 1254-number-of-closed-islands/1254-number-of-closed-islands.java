@@ -1,36 +1,31 @@
 class Solution {
-
     public int closedIsland(int[][] grid) {
-        return solve(grid);
-    }
-
-    public int solve(int[][] board) {
-        int n = board.length, m = board[0].length;
-        for (int i = 0; i < n; i++) {
-            if (board[i][0] == 0) dfs(board, i, 0);
-            if (board[i][m - 1] == 0) dfs(board, i, m - 1);
+       int n=grid.length,m=grid[0].length;
+        for(int i=0; i<m; i++){
+            if(grid[0][i]==0) makeOne(0,i,grid);
+            if(grid[n-1][i]==0) makeOne(n-1,i,grid);
         }
-        for (int i = 0; i < m; i++) {
-            if (board[0][i] == 0) dfs(board,  0, i);
-            if (board[n - 1][i] == 0) dfs(board, n - 1, i);
+        for(int i=0; i<n; i++){
+            if(grid[i][0]==0) makeOne(i,0,grid);
+            if(grid[i][m-1]==0) makeOne(i,m-1,grid);
         }
-        int ans = 0;
-        for (int i = 0; i < n; i++) {
-            for (int j = 0; j < m; j++) {
-                if (board[i][j] == 0 ) {
-                    dfs(board,i,j); ans++;
+        
+        int ans=0;
+        for(int i=0; i<n; i++){
+            for(int j=0; j<m; j++){
+                if(grid[i][j]==0){
+                    ans++; makeOne(i,j,grid);
                 }
             }
         }
-        return ans;
+       return ans; 
     }
-
-    void dfs(int board[][], int i, int j) {
-        if (i < 0 || j < 0 || i == board.length || j == board[0].length || board[i][j] == 1) return;
-        board[i][j]=1;
-        dfs(board, i + 1, j);
-        dfs(board,  i - 1, j);
-        dfs(board,  i, j + 1);
-        dfs(board,  i, j - 1);
+    void makeOne(int i,int j,int[][] grid){
+        if(i<0 || j<0 || i==grid.length || j==grid[0].length || grid[i][j]==1) return;
+        grid[i][j]=1;
+        makeOne(i+1,j,grid);
+        makeOne(i,j+1,grid);
+        makeOne(i-1,j,grid);
+        makeOne(i,j-1,grid);
     }
 }
