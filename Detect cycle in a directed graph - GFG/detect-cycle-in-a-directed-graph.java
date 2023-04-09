@@ -1,4 +1,4 @@
-// { Driver Code Starts
+//{ Driver Code Starts
 import java.util.*;
 import java.io.*;
 import java.lang.*;
@@ -12,7 +12,7 @@ class DriverClass {
             ArrayList<ArrayList<Integer>> list = new ArrayList<>();
             int V = sc.nextInt();
             int E = sc.nextInt();
-            for (int i = 0; i < V + 1; i++)
+            for (int i = 0; i < V; i++)
                 list.add(i, new ArrayList<Integer>());
             for (int i = 0; i < E; i++) {
                 int u = sc.nextInt();
@@ -25,7 +25,8 @@ class DriverClass {
                 System.out.println("0");
         }
     }
-}// } Driver Code Ends
+}
+// } Driver Code Ends
 
 
 /*Complete the function below*/
@@ -33,27 +34,45 @@ class DriverClass {
 class Solution {
     // Function to detect cycle in a directed graph.
     public boolean isCyclic(int V, ArrayList<ArrayList<Integer>> adj) {
-        int ind[]=new int[V];
-        for(int i=0; i<V; i++){
-            for(int num:adj.get(i)){
-                ind[num]++;
+            int topo[]=new int[V];
+            for(ArrayList<Integer> sub:adj){
+                for(int node:sub){
+                    topo[node]++;
+                }
             }
-        }
-        Queue<Integer> q=new LinkedList<>();
-        for(int i=0; i<V; i++){
-            if(ind[i]==0){
-                q.offer(i);
+            // for(int i=0; i<V; i++)
+            //     getTopo(adj,i,topo);
+            
+            Queue<Integer> q=new LinkedList<>();
+            
+            for(int i=0; i<V; i++){
+                if(topo[i]==0) q.offer(i);
             }
-        }
-        int len=0;
-        while(!q.isEmpty()){
-            int node=q.poll();
-            len++;
-            for(int num:adj.get(node)){
-                ind[num]--;
-                if(ind[num]==0) q.offer(num);
+            
+            int vertex=0;
+            
+            while(!q.isEmpty()){
+                int node=q.poll();
+                vertex++;
+                for(int child:adj.get(node)){
+                    if(--topo[child]==0){
+                        q.offer(child);
+                    }
+                }
             }
-        }
-        return len==V?false:true;
+            
+            return vertex!=V;
     }
+    
+    void getTopo(ArrayList<ArrayList<Integer>> adj,int root,int topo[]){
+            
+            for(int child:adj.get(root)){
+                if(topo[child]==-1)
+                    getTopo(adj,child,topo);
+            }
+            
+            topo[root]++;
+    }
+    
+   
 }
