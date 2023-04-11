@@ -8,7 +8,8 @@ class Solution {
         for (int box : initialBoxes) {
             q.offer(box);
             for (int xkey : keys[box]) {
-                key.add(xkey);
+                status[xkey]=1;
+                // key.add(xkey);
             }
         }
 
@@ -18,13 +19,14 @@ class Solution {
             if (vis.contains(box)) continue;
             vis.add(box);
 
-            if (status[box] == 1 || key.contains(box)) {
+            if (status[box] == 1) {
                 ans += candies[box];
                 key.remove(box);
                 for (int boxx : containedBoxes[box]) {
                     q.offer(boxx);
                     for (int xkey : keys[boxx]) {
-                        key.add(xkey);
+                        // key.add(xkey);
+                        status[xkey]=1;
                     }
                 }
             }
