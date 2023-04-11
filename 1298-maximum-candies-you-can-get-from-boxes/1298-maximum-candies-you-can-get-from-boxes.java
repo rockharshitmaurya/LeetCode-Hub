@@ -20,7 +20,7 @@ class Solution {
 
             if (status[box] == 1 || key.contains(box)) {
                 ans += candies[box];
-                
+                key.remove(box);
                 for (int boxx : containedBoxes[box]) {
                     q.offer(boxx);
                     for (int xkey : keys[boxx]) {
