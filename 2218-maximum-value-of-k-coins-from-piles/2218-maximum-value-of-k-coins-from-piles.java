@@ -14,13 +14,13 @@ class Solution {
 
         if (dp[idx][k] != -1) return dp[idx][k];
         int sum = 0;
-        int max = helper(piles, k, idx + 1);
+        int max =0;
         for (int i = 0; i < piles.get(idx).size(); i++) {
             if (k - (i + 1) < 0) continue;
             sum += piles.get(idx).get(i);
             max = Math.max(max, sum + helper(piles, k - (i + 1), idx + 1));
         }
-
+        max=Math.max(max,helper(piles, k, idx + 1));
         return dp[idx][k] = max;
     }
 }
