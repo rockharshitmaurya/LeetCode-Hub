@@ -31,7 +31,7 @@ class Solution {
 
 
         helper(root.left, left ? 1 : score + 1, true, false);
-        System.out.println(score);
+        // System.out.println(score);
         helper(root.right, right ? 1 : score + 1, false, true);
 
         return 0;
