@@ -17,7 +17,7 @@ class Solution {
     int ans = 0;
 
     public int longestZigZag(TreeNode root) {
-        System.out.println("---------------------");
+        // System.out.println("---------------------");
 
         helper(root, 0, false, false);
         return ans;
