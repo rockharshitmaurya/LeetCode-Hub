@@ -14,7 +14,8 @@ class Solution {
        return ans; 
     }
     double dfs(String s, String t, double r, Map<String, Map<String, Double>> map, Set<String> seen) {
-        if(!map.containsKey(s) || !seen.add(s)) return -1;
+        if(!map.containsKey(s)) return -1;
+        if(!seen.add(s)) return -1;
         if(s.equals(t)) return r;
         Map<String, Double> next=map.get(s);
         for(String c:next.keySet()){
