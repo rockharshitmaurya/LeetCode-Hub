@@ -13,7 +13,6 @@ class Solution {
         }
         String key=start+":"+end;
         if(dp.containsKey(key)) return dp.get(key);
-        // if(dp[start][end]!=null) return dp[start][end];
         
         int ans=(int)1e9+7;
         for(int i=idx; i<cuts.length; i++){
