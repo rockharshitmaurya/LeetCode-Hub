@@ -1,25 +1,33 @@
 class Solution {
+    HashMap<String,Integer> dp;
     public int minCost(int n, int[] cuts) {
-        int c=cuts.length;
-        int cut[]=new int[c+2];
         Arrays.sort(cuts);
-        for(int i=0; i<c; i++){
-            cut[i+1]=cuts[i];
+        dp=new HashMap<>();
+        // dp=new Integer[n+1][n+1];
+        return helper(0,cuts,0,n);
+    }
+    
+    int helper(int idx,int cuts[],int start,int end){
+        if(idx>=cuts.length){
+            return 0;
         }
-        cut[c+1]=n;
+        String key=start+":"+end;
+        if(dp.containsKey(key)) return dp.get(key);
+        // if(dp[start][end]!=null) return dp[start][end];
         
-        int dp[][]=new int[c+2][c+2];
-        for(int i=c; i>=1; i--){
-            for(int j=1; j<=c;j++){
-                if(i>j) continue;
-                int min=Integer.MAX_VALUE;
-                for(int idx=i; idx<=j; idx++){
-                    int step=cut[j+1]-cut[i-1]+dp[idx+1][j]+dp[i][idx-1];
-                    min=Math.min(min,step);
-                }
-                dp[i][j]=min;
-            }
+        int ans=(int)1e9+7;
+        for(int i=idx; i<cuts.length; i++){
+            if(cuts[i]>=end) break;
+            else if(cuts[i]<=start) continue;
+            
+            int cost=end-start;
+
+            int left=helper(0,cuts,start,cuts[i]);
+            int right=helper(i+1,cuts,cuts[i],end); 
+            ans=Math.min(ans,(left+right+cost));
         }
-        return dp[1][c];
+        int res=ans==(int)1e9+7?0:ans;
+        dp.put(key,res);
+        return res;
     }
 }
