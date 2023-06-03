@@ -1,36 +1,60 @@
 class Solution {
+
+    class Pair {
+        char ch;
+        int count = 0;
+
+        Pair(char _ch, int _count) {
+            ch = _ch;
+            count = _count;
+        }
+    }
+
     public String frequencySort(String s) {
-        HashMap<Character,Integer> map=new HashMap<>();
-        for(char ch:s.toCharArray()){
-            map.put(ch,map.getOrDefault(ch,0)+1);
+        ArrayList<Pair> list = new ArrayList<>();
+
+        for (char ch = 'a'; ch <= 'z'; ch++) {
+            list.add(new Pair(ch, 0));
         }
-        
-        ArrayList<ArrayList<Character>> list=new ArrayList<>();
-        
-        for(int i=0; i<=s.length(); i++){
-            list.add(new ArrayList<>());
+
+        for (char ch = 'A'; ch <= 'Z'; ch++) {
+            list.add(new Pair(ch, 0));
         }
-        
-        for(Character ch:map.keySet()){
-            list.get(map.get(ch)).add(ch);
+
+        for (char ch = '0'; ch <= '9'; ch++) {
+            list.add(new Pair(ch, 0));
         }
-        StringBuilder sb=new StringBuilder();
-        
-        for(int i=list.size()-1; i>=0; i--){
-            if(list.get(i).size()==0) continue;
-            
-            
-            for(char ch:list.get(i)){
-                int count=i;
-                while(count-->0){
-                    sb.append(ch);
-                }
+
+        for (char ch : s.toCharArray()) {
+            if (ch >= 'A' && ch <= 'Z') continue;
+            if (ch >= '0' && ch <= '9') continue;
+            list.get(ch - 'a').count++;
+        }
+
+        for (char ch : s.toCharArray()) {
+            if (ch >= 'a' && ch <= 'z') continue;
+            if (ch >= '0' && ch <= '9') continue;
+            list.get((ch - 'A') + 26).count++;
+        }
+
+        for (char ch : s.toCharArray()) {
+            if (ch >= 'a' && ch <= 'z') continue;
+            if (ch >= 'A' && ch <= 'Z') continue;
+            list.get((ch - '0') + 26 + 26).count++;
+        }
+
+        StringBuilder sb = new StringBuilder();
+
+        Collections.sort(list, (o1, o2) -> (o2.count - o1.count));
+
+        for (int i = 0; i < list.size(); i++) {
+            int totle = list.get(i).count;
+            if (totle == 0) break;
+            while (totle-- > 0) {
+                sb.append(list.get(i).ch);
             }
         }
-        // System.out.println(list);
-        return sb.toString();
+
+        return new String(sb);
     }
 }
-// [[],[],[],[]]
-
-// [0,1,2,3]
