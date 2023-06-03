@@ -1,6 +1,20 @@
 class Solution {
 
     public int numOfMinutes(int n, int headID, int[] manager, int[] in_time) {
+        
+//         int ans[]=new int[n];
+        
+//         int res=0;
+        
+        
+//         for(int i=0; i<n; i++){
+//             if(manager[i]==-1) continue;
+            
+//             ans[i] = ans[i] + in_time[manager[i]];
+            
+            
+//             res= Math.max(res,ans[i]);
+//         }
         ArrayList<ArrayList<Integer>> adj = new ArrayList<>();
         for (int i = 0; i < n; i++) adj.add(new ArrayList<>());
 
@@ -22,5 +36,6 @@ class Solution {
         }
 
         return ans;
+        // return res;
     }
 }
