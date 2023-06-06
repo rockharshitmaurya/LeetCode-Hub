@@ -1,5 +1,5 @@
 class Solution {
-    int dp[][][] = new int[11][100][2];
+    int dp[][][] = new int[11][10][2];
 
     public int countDigitOne(int n) {
         for (int arr[][] : dp) for (int arr2[] : arr) Arrays.fill(arr2, -1);
