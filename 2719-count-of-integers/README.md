@@ -12,14 +12,14 @@
 <p>&nbsp;</p>
 <p><strong class="example">Example 1:</strong></p>
 
-<pre><strong>Input:</strong> num1 = "1", num2 = "12", min_num = 1, max_num = 8
+<pre><strong>Input:</strong> num1 = "1", num2 = "12", <code>min_sum</code> = 1, max_sum = 8
 <strong>Output:</strong> 11
 <strong>Explanation:</strong> There are 11 integers whose sum of digits lies between 1 and 8 are 1,2,3,4,5,6,7,8,10,11, and 12. Thus, we return 11.
 </pre>
 
 <p><strong class="example">Example 2:</strong></p>
 
-<pre><strong>Input:</strong> num1 = "1", num2 = "5", min_num = 1, max_num = 5
+<pre><strong>Input:</strong> num1 = "1", num2 = "5", <code>min_sum</code> = 1, max_sum = 5
 <strong>Output:</strong> 5
 <strong>Explanation:</strong> The 5 integers whose sum of digits lies between 1 and 5 are 1,2,3,4, and 5. Thus, we return 5.
 </pre>
