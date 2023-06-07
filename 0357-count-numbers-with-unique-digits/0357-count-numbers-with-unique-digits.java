@@ -5,10 +5,10 @@ class Solution {
         if(n==0) return 1;
         else if(n==1) return 10;
         int num=(int)Math.pow(10, n);
-        return helper(num+ "", 0, 1, 0,0,"->");
+        return helper(num+ "", 0, 1,0);
     }
 
-    int helper(String num, int idx, int limit, int sum,int tsum,String str) {
+    int helper(String num, int idx, int limit, int tsum) {
         
         if (num.length() == idx) {
             // System.out.println(str);
@@ -23,8 +23,7 @@ class Solution {
             int new_limit = (limit == 1 && dig == end) ? 1 : 0;
             if(map[dig]>0) continue;
             if(tsum+dig>0) map[dig]++;
-            int to_add = (map[dig] == 1 ? 1 : 0);
-            ans = ans + helper(num, idx + 1, new_limit, sum + to_add,tsum+dig,str+dig);
+            ans = ans + helper(num, idx + 1, new_limit, tsum+dig);
             if(tsum+dig>0) map[dig]--;
         }
         
