@@ -11,29 +11,29 @@ class Solution {
                 r = mid - 1;
             }
         }
-        // System.out.println(ok(n, index, maxSum, 3));
+
         return (int) ans;
     }
 
-    boolean ok(int n, int index, int maxSum, long mid) {
-        long sum = 0;
-        for (long i = index, val = mid; i >= 0; i--, val--) {
-            if (val < 1) {
-                sum += (i + 1);
+    boolean ok(int n, int idx, int max, long mid) {
+        for (long i = idx, sub = mid; i >= 0; i--, sub--) {
+            if (sub < 1) {
+                max -= (i + 1);
                 break;
             }
-            sum += val;
-            if (sum > maxSum) return false;
+            max -= sub;
+            if (max < 0) return false;
         }
 
-        for (long i = index + 1, val = mid - 1; i < n; i++, val--) {
-            if (val < 1) {
-                sum += (n - i);
+        for (long i = idx + 1, sub = mid - 1; i < n; i++, sub--) {
+            if (sub < 1) {
+                max -= (n - i);
                 break;
             }
-            sum += val;
-            if (sum > maxSum) return false;
+            max -= sub;
+            if (max < 0) return false;
         }
-        return sum <= maxSum;
+
+        return max >= 0;
     }
 }
