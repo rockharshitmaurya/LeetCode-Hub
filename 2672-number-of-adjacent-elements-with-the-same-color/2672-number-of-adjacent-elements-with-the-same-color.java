@@ -8,10 +8,6 @@ class Solution {
         int i = 0;
         for (int sub[] : queries) {
             int idx = sub[0], col = sub[1];
-            // if (arr[idx] == col) {
-            //     ans[i++] = sum;
-            //     continue;
-            // }
 
             if (idx + 1 < n) {
                 if (arr[idx] == arr[idx + 1] && arr[idx] != 0) sum -= 1;
