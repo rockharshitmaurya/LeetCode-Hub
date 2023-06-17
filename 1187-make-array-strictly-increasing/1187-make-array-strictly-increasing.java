@@ -1,35 +1,29 @@
 class Solution {
-    TreeSet<Integer> set = new TreeSet<>();
-    HashMap<String, Integer> dp = new HashMap<>();
-
     public int makeArrayIncreasing(int[] arr1, int[] arr2) {
+        TreeSet<Integer> set = new TreeSet<>();
         for (int num : arr2) {
             set.add(num);
         }
-        int ans = helper(arr1, arr2, 0, -1);
-        return ans == (int) 1e9 ? -1 : ans;
-    }
-
-    int helper(int arr1[], int arr2[], int idx, int ele) {
-        if (idx == arr1.length) return 0;
-        String key = idx + ":" + ele;
-        if (dp.containsKey(key)) return dp.get(key);
-        int ans = (int) 1e9;
-        if (ele < arr1[idx]) {
-            ans = Math.min(ans, helper(arr1, arr2, idx + 1, arr1[idx]));
+        int n = arr1.length;
+        int[][] dp = new int[n + 1][n + 1];
+        for (int i = 0; i <= n; i++) {
+            Arrays.fill(dp[i], (int) 1e9);
         }
-
-        Integer high = set.higher(ele);
-        if (high != null) {
-            ans = Math.min(ans, 1 + helper(arr1, arr2, idx + 1, high));
+        dp[0][0] = -1;
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j <= i; j++) {
+                if (dp[i][j] < arr1[i]) {
+                    dp[i + 1][j] = Math.min(dp[i + 1][j], arr1[i]);
+                }
+                Integer high = set.higher(dp[i][j]);
+                if (high != null) {
+                    dp[i + 1][j + 1] = Math.min(dp[i + 1][j + 1], high);
+                }
+            }
         }
-        dp.put(key, ans);
-        return ans;
+        for (int i = 0; i <= n; i++) {
+            if (dp[n][i] < (int) 1e9) return i;
+        }
+        return -1;
     }
 }
-// [1,5,3,6,7]
-// [4,3,1]
-// [1,5,3,6,7]
-// [4,5,3,6,7] 1
-// [1,5,3,6,7]
-// [4,5,3,6,7] 1
