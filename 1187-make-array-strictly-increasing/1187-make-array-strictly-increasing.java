@@ -1,10 +1,10 @@
 class Solution {
-    TreeMap<Integer, Integer> map = new TreeMap<>();
+    TreeSet<Integer> set = new TreeSet<>();
     HashMap<String, Integer> dp = new HashMap<>();
 
     public int makeArrayIncreasing(int[] arr1, int[] arr2) {
         for (int num : arr2) {
-            map.put(num, map.getOrDefault(num, 0) + 1);
+            set.add(num);
         }
         int ans = helper(arr1, arr2, 0, -1);
         return ans == (int) 1e9 ? -1 : ans;
@@ -19,7 +19,7 @@ class Solution {
             ans = Math.min(ans, helper(arr1, arr2, idx + 1, arr1[idx]));
         }
 
-        Integer high = map.higherKey(ele);
+        Integer high = set.higher(ele);
         if (high != null) {
             ans = Math.min(ans, 1 + helper(arr1, arr2, idx + 1, high));
         }
