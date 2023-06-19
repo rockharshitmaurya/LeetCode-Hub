@@ -3,7 +3,7 @@ class Solution {
     int dp[][];
 
     public int specialPerm(int[] nums) {
-        dp = new int[(int) Math.pow(2, nums.length + 1)][nums.length + 1];
+        dp = new int[(int) Math.pow(2, nums.length)][nums.length + 1];
         for (int arr[] : dp) Arrays.fill(arr, -1);
         return helper(nums, 0, 0, -1);
     }
