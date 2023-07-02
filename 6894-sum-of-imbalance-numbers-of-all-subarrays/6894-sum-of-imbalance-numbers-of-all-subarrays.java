@@ -4,18 +4,14 @@ class Solution {
         int n = nums.length;
         int ans = 0;
         for (int i = 0; i < n; i++) {
-            // String sub = "";
             int temp = 0;
             SortingList<Integer> list = new SortingList<>();
             for (int j = i; j < n; j++) {
                 list.add(nums[j]);
                 temp += list.imbalance;
-                // System.out.println(list.imbalance);
-                // System.out.println(list.delegate);
             }
             ans += temp;
         }
-
         return ans;
     }
 
@@ -39,32 +35,22 @@ class Solution {
             }
             len++;
             delegate.add(insertionIndex, e);
-if (len == 1) return;
-int next = insertionIndex == len - 1 ? Integer.MAX_VALUE : (Integer) delegate.get(insertionIndex + 1);
-int prev = insertionIndex == 0 ? Integer.MIN_VALUE : (Integer) delegate.get(insertionIndex - 1);
-int e1 = (Integer) delegate.get(insertionIndex);
-if (next - prev > 1) imbalance--;
-if (next - e1 > 1) imbalance++;
-if (e1 - prev > 1) imbalance++;
-
-            // System.out.println(insertionIndex+" index ");
-
-            // if (delegate.size() >= 2) {
-            //     if (((Integer) delegate.get(len - 1) - (Integer) delegate.get(len - 2)) > 1) imbalance++;
-            // }
+            if (len == 1) return;
+            int next = insertionIndex == len - 1 ? Integer.MAX_VALUE : (Integer) delegate.get(insertionIndex + 1);
+            int prev = insertionIndex == 0 ? Integer.MIN_VALUE : (Integer) delegate.get(insertionIndex - 1);
+            int e1 = (Integer) delegate.get(insertionIndex);
+            if (next - prev > 1) imbalance--;
+            if (next - e1 > 1) imbalance++;
+            if (e1 - prev > 1) imbalance++;
         }
-
-        // 10 13 11
         public void remove(E e) {
             int index = Collections.binarySearch(delegate, e);
             delegate.remove(index);
             len--;
         }
-
         public int size() {
             return len;
         }
-
         public E get(int index) {
             return delegate.get(index);
         }
