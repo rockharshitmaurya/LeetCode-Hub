@@ -39,27 +39,14 @@ class Solution {
             }
             len++;
             delegate.add(insertionIndex, e);
-            if (len == 1) return;
-            if (insertionIndex == 0) {
-                if ((Integer) delegate.get(1) - (Integer) delegate.get(0) > 1) imbalance++;
-            } else if (insertionIndex == len-1) {
-                if ((Integer) delegate.get(len-1) - (Integer) delegate.get(len - 2) > 1) imbalance++;
-            } else {
-                Integer next = (Integer) delegate.get(insertionIndex + 1);
-                Integer prev = (Integer) delegate.get(insertionIndex - 1);
-                if (next - prev > 1) {
-                    imbalance--;
-                    // System.out.println(" first ");
-                }
-                if (next - (Integer) e > 1) {
-                    imbalance++;
-                    // System.out.println(" second ");
-                }
-                if ((Integer) e - prev > 1) {
-                    imbalance++;
-                    // System.out.println(" third ");
-                }
-            }
+if (len == 1) return;
+int next = insertionIndex == len - 1 ? Integer.MAX_VALUE : (Integer) delegate.get(insertionIndex + 1);
+int prev = insertionIndex == 0 ? Integer.MIN_VALUE : (Integer) delegate.get(insertionIndex - 1);
+int e1 = (Integer) delegate.get(insertionIndex);
+if (next - prev > 1) imbalance--;
+if (next - e1 > 1) imbalance++;
+if (e1 - prev > 1) imbalance++;
+
             // System.out.println(insertionIndex+" index ");
 
             // if (delegate.size() >= 2) {
