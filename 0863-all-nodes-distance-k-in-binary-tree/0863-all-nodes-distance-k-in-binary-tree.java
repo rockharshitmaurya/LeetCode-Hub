@@ -61,6 +61,7 @@ class Solution {
         while(!q.isEmpty()){
             arr.add(q.poll().val);
         }
+        System.gc();
         return arr;
     }
 }
