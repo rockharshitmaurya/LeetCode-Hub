@@ -36,6 +36,7 @@ class Solution {
         int cur_lev=0;
         
         while(q.size()>0){
+                    System.gc();
           int len=q.size();
             if(k==cur_lev) break;
             
@@ -61,7 +62,7 @@ class Solution {
         while(!q.isEmpty()){
             arr.add(q.poll().val);
         }
-        System.gc();
+
         return arr;
     }
 }
