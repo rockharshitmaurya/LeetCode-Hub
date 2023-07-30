@@ -1,17 +1,10 @@
+import java.util.Arrays;
+
 class Solution {
-
     public int longestSubarray(int[] nums) {
-        int result = 0, length = 0, max = 0;
-        for (int ele : nums) {
-            max = Math.max(max, ele);
-        }
-
-        for (int ele : nums) {
-            if (ele == max) result = Math.max(result, ++length);
-            else length = 0;
-            
-        }
-
-        return result;
+        int max = Arrays.stream(nums).max().orElse(0);
+        return Arrays.stream(nums)
+                .boxed()
+                .reduce(new int[]{0, 0}, (result, ele) -> ele == max ? new int[]{Math.max(result[0], ++result[1]), result[1]} : new int[]{Math.max(result[0], result[1]), 0}, (a, b) -> new int[]{Math.max(a[0], b[0]), 0})[0];
     }
 }
