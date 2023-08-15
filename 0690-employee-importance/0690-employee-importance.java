@@ -20,8 +20,8 @@ class Solution {
     }
 
     int helper(int root, List<Employee> employees) {
-        if (set.contains(root)) return 0;
-        set.add(root);
+        if (!set.add(root)) return 0;
+
         int sum = employees.get(map.get(root)).importance;
         for (int child : employees.get(map.get(root)).subordinates) {
             sum += helper(child, employees);
