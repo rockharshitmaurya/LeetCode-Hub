@@ -1,23 +1,25 @@
-class Solution {
-    public String longestPalindrome(String s) {
-        boolean dp[][]=new boolean[s.length()][s.length()];
-        String ans="";
-        for(int g=0; g<s.length(); g++){
-            for(int i=0,j=g; j<s.length(); i++,j++){
-                if(g==0){
-                    dp[i][j]=true;
-                }else if(g==1){
-                    if(s.charAt(i)==s.charAt(j)) dp[i][j]=true;
-                }else{
-                    if(s.charAt(i)==s.charAt(j) && dp[i+1][j-1]==true) dp[i][j]=true;
-                }
-                if(dp[i][j]){
-                    String mid=s.substring(i,j+1);
-                    ans=mid;
-                }
-            }
-        }
-        // System.out.println(ans);
-        return ans;
+public class Solution {
+private int lo, maxLen;
+
+public String longestPalindrome(String s) {
+	int len = s.length();
+	if (len < 2)
+		return s;
+	
+    for (int i = 0; i < len-1; i++) {
+     	extendPalindrome(s, i, i);  //assume odd length, try to extend Palindrome as possible
+     	extendPalindrome(s, i, i+1); //assume even length.
     }
+    return s.substring(lo, lo + maxLen);
 }
+
+private void extendPalindrome(String s, int j, int k) {
+	while (j >= 0 && k < s.length() && s.charAt(j) == s.charAt(k)) {
+		j--;
+		k++;
+	}
+	if (maxLen < k - j - 1) {
+		lo = j + 1;
+		maxLen = k - j - 1;
+	}
+}}
