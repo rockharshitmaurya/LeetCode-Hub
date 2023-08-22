@@ -4,6 +4,7 @@ class Solution {
         dp = new int[10][2][2][10][10][k+1];
         reset(high+1);
         int max=helper(high + "", 0, 1, 1, 0, 0, 0, k);
+        System.gc();
         reset(low+1);
         int min=helper((low - 1) + "", 0, 1, 1, 0, 0, 0, k);
         
