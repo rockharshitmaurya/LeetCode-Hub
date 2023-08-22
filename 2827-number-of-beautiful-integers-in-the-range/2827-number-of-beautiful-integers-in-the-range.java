@@ -4,7 +4,6 @@ class Solution {
         dp = new int[10][2][2][10][10][k+1];
         reset(high+1);
         int max=helper(high + "", 0, 1, 1, 0, 0, 0, k);
-        System.gc();
         reset(low+1);
         int min=helper((low - 1) + "", 0, 1, 1, 0, 0, 0, k);
         
@@ -19,6 +18,7 @@ class Solution {
                 return 0;
             }
         }
+        
         if (dp[idx][tight][isZero][even][odd][str % k] != -1)
             return dp[idx][tight][isZero][even][odd][str % k];
         
@@ -41,6 +41,8 @@ class Solution {
     }
     
     void reset(int high){
+        System.gc();
+        
         for (int i = 0; i < 10; i++)
             for (int j = 0; j < 2; j++)
                 for (int l = 0; l < 2; l++)
