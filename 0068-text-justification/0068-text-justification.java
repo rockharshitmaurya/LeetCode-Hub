@@ -16,7 +16,7 @@ class Solution {
             int space = (maxWidth - count) / div;
             int extra = (maxWidth - count) % div;
             StringBuilder sb = new StringBuilder();
-            System.out.println(q+" "+space);
+            // System.out.println(q+" "+space);
             
 
             if (q.size() == 1) {
