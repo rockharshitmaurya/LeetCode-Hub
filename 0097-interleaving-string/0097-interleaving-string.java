@@ -1,5 +1,5 @@
 class Solution {
-    Integer dp[][][]=new Integer[101][101][201];
+    Integer dp[][]=new Integer[101][101];
     public boolean isInterleave(String s1, String s2, String s3) {
         if(s1.length()+s2.length()!=s3.length()) return false;
         
@@ -10,7 +10,7 @@ class Solution {
         int idx3=idx1+idx2;
         if(idx3==str3.length()) return true;
         
-        if(dp[idx1][idx2][idx3]!=null) return dp[idx1][idx2][idx3]==1;
+        if(dp[idx1][idx2]!=null) return dp[idx1][idx2]==1;
         if(idx1<str1.length()){
             if(str1.charAt(idx1)==str3.charAt(idx3)) {
                 if(helper(str1,str2,str3,idx1+1,idx2)) return true;
@@ -22,7 +22,7 @@ class Solution {
                 if(helper(str1,str2,str3,idx1,idx2+1)) return true;
             }
         }
-        dp[idx1][idx2][idx3]=0;
+        dp[idx1][idx2]=0;
         return false;
     }
 }
