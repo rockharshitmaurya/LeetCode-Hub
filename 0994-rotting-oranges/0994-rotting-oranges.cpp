@@ -17,22 +17,14 @@ public:
         int time=0;
         while(!q.empty()){
             int size=q.size();
-            // cout<<cntfresh<<"\n______\n";
-                bool flag=0;
-            
+            bool flag=0;
             for(int i=0;i<size;i++){
                 int r=q.front().first, c=q.front().second;
-                // cout<<r<<"--main--"<<c<<" \n";
-                
                 q.pop();
-                
                 for(int k=0;k<4;k++){
                     int newi=r+dir[k][0],newj=c+dir[k][1];
-                                           // cout<<newi<<" "<<newj<<" \n";
                     if(newi>=0 && newi<n && newj>=0 && newj<m && vis[newi][newj]!=2 && grid[newi][newj]!=0){
                         if(flag==0) {time++; flag=1;}
-                       // cout<<newi<<" "<<newj<<" \n";
-                        
                         vis[newi][newj]=2;
                         q.push({newi,newj});
                         cntfresh--;
