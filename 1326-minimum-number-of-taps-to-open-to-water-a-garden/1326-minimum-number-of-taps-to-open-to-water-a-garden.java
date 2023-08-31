@@ -47,13 +47,8 @@ class Solution {
         }
 
         if (max < n) {
-            if (next_max >= n) {
-                return count;
-            }
-
-            return -1;
+            return (next_max >= n) ? count : -1;
         }
-
         return count - 1;
     }
 }
