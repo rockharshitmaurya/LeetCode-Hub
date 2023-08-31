@@ -25,7 +25,7 @@ class Solution {
             }
         );
 
-        System.out.println(Arrays.deepToString(arr));
+        // System.out.println(Arrays.deepToString(arr));
 
         int max = 0, next_max = 0;
         int count = 1;
