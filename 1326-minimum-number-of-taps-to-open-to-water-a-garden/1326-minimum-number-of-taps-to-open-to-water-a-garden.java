@@ -43,7 +43,7 @@ class Solution {
                     break;
                 }
             }
-            System.out.println(max + "-->" + next_max + " idx: " + i);
+            // System.out.println(max + "-->" + next_max + " idx: " + i);
         }
 
         if (max < n) {
