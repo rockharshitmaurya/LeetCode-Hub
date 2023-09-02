@@ -55,13 +55,13 @@ class Solution {
 
         return dp.get(key);
     }
-    //     int setBit(int number, int i) {
-    //         int mask = 1 << i;
-    //         return number | mask;
-    //     }
+        int setBit(int number, int i) {
+            int mask = 1 << i;
+            return number | mask;
+        }
 
-    //     boolean isBitSet(int number, int i) {
-    //         int mask = 1 << i;
-    //         return (number & mask) != 0;
-    //     }
+        boolean isBitSet(int number, int i) {
+            int mask = 1 << i;
+            return (number & mask) != 0;
+        }
 }
