@@ -27,10 +27,10 @@ class Solution {
             k_copy--;
         }
 
-        map = new int[26];
-        for (char ch : s.toCharArray()) {
-            map[ch - 'a']++;
-        }
+        // map = new int[26];
+        // for (char ch : s.toCharArray()) {
+        //     map[ch - 'a']++;
+        // }
 
         dp = new HashMap<>();
 
