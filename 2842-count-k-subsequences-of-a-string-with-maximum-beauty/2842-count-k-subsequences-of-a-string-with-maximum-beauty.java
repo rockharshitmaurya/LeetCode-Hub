@@ -20,17 +20,8 @@ class Solution {
 
         int k_copy = k;
 
-        int max = 0;
+        int max = Arrays.stream(map).skip(26 - k).sum();
 
-        for (int i = 25; i >= 0 && k_copy > 0; i--) {
-            max += map[i];
-            k_copy--;
-        }
-
-        // map = new int[26];
-        // for (char ch : s.toCharArray()) {
-        //     map[ch - 'a']++;
-        // }
 
         dp = new HashMap<>();
 
