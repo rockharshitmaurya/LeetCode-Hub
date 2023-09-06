@@ -19,24 +19,16 @@ class Solution {
             temp = temp.next;
         }
 
-        if (len <= k) {
-            for (int i = 0; i < len; i++) {
-                ans[i] = head;
-                head = head.next;
-                ans[i].next = null;
-            }
-        } else {
+        // if (len <= k) {
+        //     for (int i = 0; i < len; i++) {
+        //         ans[i] = head;
+        //         head = head.next;
+        //         ans[i].next = null;
+        //     }
+        // } else {
             int rem = len % k;
-            // ans[0] = head;
-            // ListNode prev = null;
-            // for (int i = 1; i <= (len / k) + (rem) && head != null; i++) {
-            //     prev = head;
-            //     head = head.next;
-            // }
-            // prev.next = null;
-            // // ans[1]=head;
             helper(head, 0, (len / k), ans, rem);
-        }
+        // }
 
         return ans;
     }
