@@ -1,1 +1,1 @@
-[https://leetcode.com/problems/min-cost-to-connect-all-points/discuss/1982777/PRIMS-oror-KRUSCALS-ALGORITHM-with-explanation-(**)](https://leetcode.com/problems/min-cost-to-connect-all-points/discuss/1982777/PRIMS-oror-KRUSCALS-ALGORITHM-with-explanation-(**))
+​
