@@ -1,33 +1,23 @@
 class Solution {
+
     public int longestStrChain(String[] words) {
-        Arrays.sort(words,(o1,o2)->(o1.length()-o2.length()));
-        
-         int dp[]=new int[words.length];
-         Arrays.fill(dp,1); int ans=0;
-        
-        for(int i=0; i<words.length; i++){
-            for(int j=i-1; j>=0; j--){
-                if(check(words[i],words[j]) && 1+dp[j]>dp[i]){
-                    dp[i]=1+dp[j];
+        Arrays.sort(words, (o1, o2) -> (o1.length() - o2.length()));
+        HashMap<String, Integer> map = new HashMap<>();
+        int ans=0;
+        for (String str : words) {
+            int val = 0;
+            for (int i = 0; i < str.length(); i++) {
+                String new_string = str.substring(0, i) + str.substring(i + 1);
+                if (map.containsKey(new_string)) {
+                    val = Math.max(val, map.get(new_string));
                 }
             }
-            if(dp[i]>ans){
-                ans=dp[i];
-            }
+            map.put(str, val + 1);
+            ans=Math.max(ans,val+1);
         }
+
+        // System.out.println(Arrays.toString(words));
         return ans;
     }
-    boolean check(String str1,String str2){
-        if(str1.length()!=str2.length()+1) return false;
-        int idx1=0,idx2=0;
-        while(idx1<str1.length()){
-
-            if(idx2<str2.length() && str1.charAt(idx1)==str2.charAt(idx2)){
-                idx1++; idx2++;
-            }else{
-                idx1++;
-            }
-        }
-        return idx1==str1.length() && idx2==str2.length();
-    }
 }
+// [abc,bcd,acd,abcd]
