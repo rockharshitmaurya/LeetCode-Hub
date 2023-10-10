@@ -1,0 +1,1 @@
+[https://leetcode.com/problems/minimum-number-of-operations-to-make-array-continuous/discuss/1471265/Java-Sort-%2B-sliding-window](https://leetcode.com/problems/minimum-number-of-operations-to-make-array-continuous/discuss/1471265/Java-Sort-%2B-sliding-window)
