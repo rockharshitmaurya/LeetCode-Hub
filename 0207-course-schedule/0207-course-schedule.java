@@ -1,46 +1,34 @@
 class Solution {
-    public boolean canFinish(int numCourses, int[][] prerequisites)     {
-      return isPossible(numCourses, prerequisites);  
-    }
-    
-    public boolean isPossible(int N, int[][] pre)
-    {
-        ArrayList<Integer>[]  adj = new ArrayList[N];
-        for (int i = 0; i < N; i++) {
-            adj[i] = new ArrayList<Integer>();
+
+    public boolean canFinish(int n, int[][] pre) {
+        int ind[] = new int[n];
+
+        ArrayList<ArrayList<Integer>> adj = new ArrayList<>();
+        for (int i = 0; i < n; i++) {
+            adj.add(new ArrayList<>());
         }
-        for(int arr[]:pre){
-            adj[arr[0]].add(arr[1]);
+        for (int i = 0; i < pre.length; i++) {
+            ind[pre[i][0]]++;
+            adj.get(pre[i][1]).add(pre[i][0]);
         }
-        
-        int order[]=new int[N];
-        
-        for(ArrayList<Integer> child:adj){
-            for(int num:child){
-                order[num]++;
-            }
+
+        Queue<Integer> q = new LinkedList<>();
+        for (int i = 0; i < n; i++) {
+            if (ind[i] == 0) q.offer(i);
         }
-        
-        Queue<Integer> q=new LinkedList<>();
-        
-        for(int i=0; i<N; i++){
-            if(order[i]==0){
-                q.offer(i);
-            }
-        }
-        
-        int count=0;
-        
-        while(!q.isEmpty()){
-            int node=q.poll();
-            count++;
-            for(int num:adj[node]){
-                if(--order[num]==0){
-                    q.offer(num);
+
+        while (!q.isEmpty()) {
+            int node = q.poll();
+            for (int child : adj.get(node)) {
+                if (--ind[child] == 0) {
+                    q.offer(child);
                 }
             }
         }
-        
-        return count==N;
+        for(int i=0; i<n; i++){
+            if(ind[i]!=0) return !true;
+        }
+        // System.out.println(Arrays.toString(ind));
+        return true;
     }
 }
