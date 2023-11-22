@@ -1,5 +1,5 @@
 class Solution {
-    //copied
+    //copied from someone
 public int[] findDiagonalOrder(List<List<Integer>> nums) {
         int n = 0, i = 0, maxKey = 0;
         Map<Integer, List<Integer>> map = new HashMap<>();
