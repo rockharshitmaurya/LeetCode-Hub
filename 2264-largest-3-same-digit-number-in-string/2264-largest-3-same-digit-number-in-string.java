@@ -11,7 +11,6 @@ class Solution {
             }
             
             if(count==3){
-                // System.out.println(idx+" "+(i+2));
                 list.add(Integer.parseInt(num.substring(idx,(i+1+1))));
             }
         }
