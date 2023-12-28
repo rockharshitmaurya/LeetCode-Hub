@@ -1,4 +1,5 @@
 class Solution {
+    // i have not done it by my own.
     public int getLengthOfOptimalCompression(String s, int k) {
         // dp[i][k]: the minimum length for s[:i] with at most k deletion.
         int n = s.length();
