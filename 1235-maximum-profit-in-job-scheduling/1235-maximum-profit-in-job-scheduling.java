@@ -3,27 +3,31 @@ class Solution {
 
     public int jobScheduling(int[] startTime, int[] endTime, int[] profit) {
         ArrayList<int[]> list = new ArrayList<>();
-        int n = profit.length;
-        dp = new int[n];
-        Arrays.fill(dp, -1);
         for (int i = 0; i < startTime.length; i++) {
             list.add(new int[] { startTime[i], endTime[i], profit[i] });
         }
-
         Collections.sort(list, (o1, o2) -> (o1[0] - o2[0]));
+        int size = list.size();
+        dp = new int[size + 2];
+
+        Arrays.fill(dp, -1);
 
         return helper(list, 0);
     }
 
     int helper(ArrayList<int[]> list, int idx) {
-        if (list.size() == idx) return 0;
+        if (idx == list.size()) return 0;
+        // System.out.println(idx);
+        if (dp[idx] != -1) {
+            return dp[idx];
+        }
 
 
-        if (dp[idx] != -1) return dp[idx];
-        int take = 0, nottake = 0;
-        take = list.get(idx)[2] + helper(list,  findNext(list,idx));
-        nottake = helper(list, idx + 1);
-        return dp[idx] = Math.max(take, nottake);
+
+        int pick = list.get(idx)[2] + helper(list, findNext(list, idx));
+        int notpick = helper(list, idx + 1);
+
+        return dp[idx] = Math.max(notpick, pick);
     }
 
     public int findNext(ArrayList<int[]> events, int idx) {
