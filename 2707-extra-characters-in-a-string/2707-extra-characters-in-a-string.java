@@ -1,24 +1,31 @@
+import java.util.HashSet;
+import java.util.Set;
+
 class Solution {
     public int minExtraChar(String s, String[] dictionary) {
-
-            return substring_dfs(s,  new HashSet<>(Arrays.asList(dictionary)),  new HashMap<>());
-    }
-    private int substring_dfs(String given_string, Set<String> given_strings, Map<String, Integer> dynamic) {
-    if (given_string.length() == 0) {
-        return 0;
-    }
-    if (dynamic.containsKey(given_string)) {
-        return dynamic.get(given_string);
-    }
-    int minExtra = given_string.length();
-    for (int i = 1; i <= given_string.length(); i++) {
-        String left = given_string.substring(0, i);
-        if (given_strings.contains(left)) {
-            minExtra = Math.min(minExtra, substring_dfs(given_string.substring(i), given_strings, dynamic));
+        Set<String> dict = new HashSet<>();
+        for (String word : dictionary) {
+            dict.add(word); // Add dictionary words to a set for quick lookup
         }
+        int n = s.length();
+        int[] dp = new int[n + 1]; // DP array to track the minimum extra characters
+        for (int i = 0; i <= n; i++) {
+            dp[i] = n; // Initialize with maximum extra characters
+        }
+        dp[0] = 0; // No extra characters for an empty string
+
+        // Iterate through each index in the string
+        for (int i = 1; i <= n; i++) {
+            // Check all substrings ending at i
+            for (int j = 0; j < i; j++) {
+                String sub = s.substring(j, i); // Get substring s[j:i]
+                if (dict.contains(sub)) {
+                    dp[i] = Math.min(dp[i], dp[j]); // If substring found in dictionary
+                }
+            }
+            dp[i] = Math.min(dp[i], dp[i - 1] + 1); // Consider current character as extra
+        }
+
+        return dp[n]; // Return the result from dp[n]
     }
-    minExtra = Math.min(minExtra, 1 + substring_dfs(given_string.substring(1), given_strings, dynamic));
-    dynamic.put(given_string, minExtra);
-    return minExtra;
-}
 }
